@@ -1,0 +1,24 @@
+[tools]
+php = "8.5.11"
+mago = "1.56.3"
+
+[tasks.format]
+run = "mago format"
+[tasks.lint]
+run = "mago lint"
+[tasks.analyse]
+run = "mago analyze"
+
+[tasks.build]
+run = "composer install"
+
+[tasks.test]
+run = "php vendor/bin/pest"
+depends = ["build"]
+
+[tasks.check]
+depends = ["format", "lint", "analyse", "test"]
+
+[tasks.start]
+run = "php -S localhost:8888 -t public/ app.php"
+depends = ["build"]

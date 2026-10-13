@@ -1,0 +1,30 @@
+{
+  "name": "scottaubrey/true9-payday-system",
+  "description": "Our fictional company requires a new payroll system",
+  "type": "project",
+  "autoload": {
+    "psr-4": {
+      "Scottaubrey\\True9PaydaySystem\\": "src/",
+      "Scottaubrey\\True9PaydaySystem\\Tests\\": "tests/"
+    }
+  },
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Scott Aubrey",
+      "email": "scott@aubrey.org.uk"
+    }
+  ],
+  "require": {
+    "slim/slim": "^4.15",
+    "slim/psr7": "^1.8"
+  },
+  "require-dev": {
+    "pestphp/pest": "^5.3"
+  },
+  "config": {
+    "allow-plugins": {
+      "pestphp/pest-plugin": true
+    }
+  }
+}
