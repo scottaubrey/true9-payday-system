@@ -22,6 +22,9 @@ abstract class ApiTestCase extends TestCase
         $request = $serverRequestFactory->createServerRequest('GET', $uri->toString());
         $response = $app->handle($request);
 
+        //required before treating as a freshly received ResponseInterface;
+        $response->getBody()->rewind();
+
         if ($response->getStatusCode() !== 200) {
             return null;
         }
