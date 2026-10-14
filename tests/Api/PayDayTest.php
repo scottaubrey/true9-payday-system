@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 describe('PayDayApi', function () {
     it('accepts a year and a month', function () {
-        $responseData = $this->makePayDayRequestAndDecode('2026', '10');
+        $responseData = makePayDayRequestAndDecode('2026', '10');
 
         expect($responseData)->not->toBeNull();
     });

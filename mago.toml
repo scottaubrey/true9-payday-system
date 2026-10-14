@@ -25,6 +25,7 @@ integrations = ["pest"]
 ambiguous-function-call = { enabled = false }
 literal-named-argument = { enabled = false }
 halstead = { effort-threshold = 7000 }
+function-name = { camel = true }
 
 [analyzer]
 ignore = [
