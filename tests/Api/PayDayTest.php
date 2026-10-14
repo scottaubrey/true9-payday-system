@@ -27,5 +27,9 @@ describe('PayDayApi', function () {
         expect($payDayView?->paymentDate?->toString())->toEqual('2026-11-23');
     });
 
-    todo('returns a payment date that is does not count weekend days');
+    it('returns a payment date that is does not count weekend days', function () {
+        $payDayView = makePayDayRequestAndDecode('2026', '12');
+
+        expect($payDayView?->paymentDate?->toString())->toEqual('2026-12-24');
+    });
 });
