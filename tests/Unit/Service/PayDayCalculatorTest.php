@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Scottaubrey\True9PaydaySystem\Model\PayDate;
 use Scottaubrey\True9PaydaySystem\Service\PayDateCalculator;
 
 describe('Service\PayDateCalculator', function () {
@@ -24,7 +25,13 @@ describe('Service\PayDateCalculator', function () {
     });
 
     describe('calculatePaymentDateFor', function () {
-        todo('returns a payment date that is four days less than the payment date');
+        it('returns a payment date that is four days less than the payment date', fails(function () {
+            $payDateCalculator = new PayDateCalculator();
+
+            $payDate = $payDateCalculator->calculatePaymentDateFor(PayDate::fromString('2026-08-28'));
+
+            expect($payDate->toString())->toBe('2026-08-24');
+        }));
 
         todo('returns a payment date taking into account working days before the payment date');
     });
