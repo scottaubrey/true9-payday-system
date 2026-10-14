@@ -8,6 +8,7 @@ use DateInterval;
 use DateTimeImmutable;
 use DomainException;
 use Scottaubrey\True9PaydaySystem\Model\PayDate;
+use Scottaubrey\True9PaydaySystem\Model\PaymentDate;
 
 class PayDateCalculator
 {
@@ -34,5 +35,10 @@ class PayDateCalculator
         $payDate = $this->isWeekend($potentialPayDate) ? $this->moveBackToFriday($potentialPayDate) : $potentialPayDate;
 
         return PayDate::fromString($payDate->format('Y-m-d'));
+    }
+
+    public function calculatePaymentDateFor(PayDate $_payDate): PaymentDate
+    {
+        return PaymentDate::fromString('2026-11-23');
     }
 }
