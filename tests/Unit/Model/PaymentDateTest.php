@@ -10,11 +10,11 @@ describe('Model\PaymentDate', function () {
             expect(fn() => PaymentDate::fromString(''))->toThrow(\Exception::class);
         });
 
-        it('accepts a valid date string', fails(function () {
+        it('accepts a valid date string', function () {
             $dateString = '2026-10-14';
             $paymentDate = PaymentDate::fromString($dateString);
             expect($paymentDate)->toBeInstanceOf(PaymentDate::class);
-        }));
+        });
     });
     describe('toString', function () {
         todo('returns a date string formatted YYYY-MM-DD');
