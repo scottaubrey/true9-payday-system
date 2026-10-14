@@ -20,7 +20,7 @@ function makePayDayRequestAndDecode(string $year, string $month): PayDay
     expect($response->getStatusCode())->toEqual(200);
 
     $body = $response->getBody()->getContents();
-    expect($response->getStatusCode())->not->toBeNull();
+    expect($body)->not->toBeNull();
 
     return PayDay::fromJson($body);
 }
