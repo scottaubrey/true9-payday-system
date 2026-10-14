@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Scottaubrey\True9PaydaySystem;
 
+use Fig\Http\Message\StatusCodeInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Scottaubrey\True9PaydaySystem\Model\PayDate;
+use Scottaubrey\True9PaydaySystem\Service\PayDateCalculator;
 use Scottaubrey\True9PaydaySystem\ViewModel\PayDay;
 use Slim\App;
 use Slim\Factory\AppFactory;
@@ -30,8 +31,15 @@ class Application
             /** @var string|null $month */
             $month = $params['month'] ?? null;
 
-            $date = $year === '2026' && $month === '11' ? '2026-11-27' : '2026-10-28';
-            $json = new PayDay(PayDate::fromString($date))->toJson();
+            if (!is_string($year) || !is_string($month)) {
+                $response->getBody()->write('{"error":"Query params require strings"}');
+                return $response->withStatus(StatusCodeInterface::STATUS_BAD_REQUEST);
+            }
+
+            $payDateCalculator = new PayDateCalculator();
+            $payDate = $payDateCalculator->calculateFor($year, $month);
+
+            $json = new PayDay($payDate)->toJson();
 
             $response->getBody()->write($json);
 
