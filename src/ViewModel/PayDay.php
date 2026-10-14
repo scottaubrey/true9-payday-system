@@ -9,17 +9,14 @@ use Scottaubrey\True9PaydaySystem\Model\PayDate;
 class PayDay
 {
     public function __construct(
-        public readonly ?PayDate $payDate = null,
+        public readonly PayDate $payDate,
     ) {}
 
     public static function fromJson(string $json): self
     {
-        /** @var array{payDate?: string} */
+        /** @var array{payDate: string} */
         $data = json_decode($json, true, flags: JSON_THROW_ON_ERROR);
 
-        if (array_key_exists('payDate', $data)) {
-            return new self(PayDate::fromString($data['payDate']));
-        }
-        return new self();
+        return new self(PayDate::fromString($data['payDate']));
     }
 }
