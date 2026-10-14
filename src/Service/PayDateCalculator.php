@@ -10,7 +10,7 @@ class PayDateCalculator
 {
     public function calculateFor(string $year, string $month): PayDate
     {
-        $date = $year === '2026' && $month === '11' ? '2026-11-27' : '2026-10-28';
+        $date = $year === '2026' && $month === '11' ? '2026-11-27' : '2026-10-30';
         return PayDate::fromString($date);
     }
 }
