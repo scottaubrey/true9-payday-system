@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace Scottaubrey\True9PaydaySystem\ViewModel;
 
 use Scottaubrey\True9PaydaySystem\Model\PayDate;
+use Scottaubrey\True9PaydaySystem\Model\PaymentDate;
 
 class PayDay
 {
     public function __construct(
         public readonly PayDate $payDate,
+        public readonly ?PaymentDate $paymentDate = null,
     ) {}
 
     public static function fromJson(string $json): self
