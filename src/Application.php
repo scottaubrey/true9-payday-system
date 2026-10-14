@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Scottaubrey\True9PaydaySystem;
 
-use Fig\Http\Message\StatusCodeInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Scottaubrey\True9PaydaySystem\Model\PayDate;
+use Scottaubrey\True9PaydaySystem\ViewModel\PayDay;
 use Slim\App;
 use Slim\Factory\AppFactory;
 
@@ -21,11 +22,10 @@ class Application
         });
 
         $app->get('/api/payday', static function (RequestInterface $_request, ResponseInterface $response) {
-            $json = json_encode(['payDate' => '2026-10-28']);
-            if (!is_string($json)) {
-                return $response->withStatus(StatusCodeInterface::STATUS_INTERNAL_SERVER_ERROR);
-            }
+            $json = new PayDay(PayDate::fromString('2026-10-28'))->toJson();
+
             $response->getBody()->write($json);
+
             return $response->withHeader('Content-Type', 'application/json');
         });
 
