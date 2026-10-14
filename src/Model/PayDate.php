@@ -17,4 +17,9 @@ class PayDate
         }
         return new self();
     }
+
+    public function toString(): string
+    {
+        return '';
+    }
 }
