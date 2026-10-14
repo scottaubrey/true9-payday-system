@@ -10,11 +10,11 @@ describe('Model\PayDate', function () {
             expect(fn() => PayDate::fromString(''))->toThrow(\Exception::class);
         });
 
-        it('returns a PayDate with internal value for the given date string', fails(function () {
+        it('returns a PayDate with internal value for the given date string', function () {
             $dateString = '2026-10-14';
             $payDate = PayDate::fromString($dateString);
             expect($payDate)->toBeInstanceOf(PayDate::class);
             expect($payDate->toString())->toBe($dateString);
-        }));
+        });
     });
 });
