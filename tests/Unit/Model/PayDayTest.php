@@ -18,6 +18,11 @@ describe('Model\PayDate', function () {
         });
     });
     describe('toDateTimeImmutable', function () {
-        todo('returns a DateTimeImmutable object from internal representation');
+        it('returns a DateTimeImmutable object from internal representation', function () {
+            $dateString = '2026-10-14';
+            $payDate = PayDate::fromString($dateString);
+            expect($payDate->toDateTimeImmutable())
+                ->toEqual(DateTimeImmutable::createFromFormat('Y-m-d|', $dateString));
+        });
     });
 });
