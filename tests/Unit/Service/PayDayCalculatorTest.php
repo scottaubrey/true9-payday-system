@@ -5,19 +5,27 @@ declare(strict_types=1);
 use Scottaubrey\True9PaydaySystem\Service\PayDateCalculator;
 
 describe('Service\PayDateCalculator', function () {
-    it('returns a pay date that is the second-to-last day of the month', function () {
-        $payDateCalculator = new PayDateCalculator();
+    describe('calculateFor', function () {
+        it('returns a pay date that is the second-to-last day of the month', function () {
+            $payDateCalculator = new PayDateCalculator();
 
-        $payDate = $payDateCalculator->calculateFor('2026', '09');
+            $payDate = $payDateCalculator->calculateFor('2026', '09');
 
-        expect($payDate->toString())->toBe('2026-09-29');
+            expect($payDate->toString())->toBe('2026-09-29');
+        });
+
+        it('returns a pay date that is the prior Friday if the second-to-last day is a weekend', function () {
+            $payDateCalculator = new PayDateCalculator();
+
+            $payDate = $payDateCalculator->calculateFor('2026', '08');
+
+            expect($payDate->toString())->toBe('2026-08-28');
+        });
     });
 
-    it('returns a pay date that is the prior Friday if the second-to-last day is a weekend', function () {
-        $payDateCalculator = new PayDateCalculator();
+    describe('calculatePaymentDateFor', function () {
+        todo('returns a payment date that is four days less than the payment date');
 
-        $payDate = $payDateCalculator->calculateFor('2026', '08');
-
-        expect($payDate->toString())->toBe('2026-08-28');
+        todo('returns a payment date taking into account working days before the payment date');
     });
 });
