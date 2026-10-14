@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Scottaubrey\True9PaydaySystem\Model\PayDate;
 
 describe('Model\PayDate', function () {
-    describe('fromString', function () {
+    describe('string serialisation', function () {
         it('throws with an invalid date string', function () {
             expect(fn() => PayDate::fromString(''))->toThrow(\Exception::class);
         });
