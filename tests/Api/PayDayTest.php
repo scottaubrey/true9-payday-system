@@ -15,7 +15,11 @@ describe('PayDayApi', function () {
         expect($payDayView?->payDate?->toString())->toEqual('2026-10-28');
     });
 
-    todo('returns a pay date that is the prior Friday if the second-to-last day is a weekend');
+    it('returns a pay date that is the prior Friday if the second-to-last day is a weekend', fails(function () {
+        $payDayView = makePayDayRequestAndDecode('2026', '11');
+
+        expect($payDayView?->payDate?->toString())->toEqual('2026-11-27');
+    }));
     todo('returns a payment date that is four days before the pay date');
     todo('returns a payment date that is does not count weekend days');
 });
