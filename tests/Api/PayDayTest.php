@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-use Scottaubrey\True9PaydaySystem\Model\PayDate;
-
 describe('PayDayApi', function () {
     it('accepts a year and a month', function () {
         $responseData = makePayDayRequestAndDecode('2026', '10');
@@ -11,11 +9,11 @@ describe('PayDayApi', function () {
         expect($responseData)->not->toBeNull();
     });
 
-    it('returns a pay date that is the second-to-last day of the month', function () {
+    it('returns a pay date that is the second-to-last day of the month', fails(function () {
         $payDayView = makePayDayRequestAndDecode('2026', '10');
 
-        expect($payDayView->payDate)->toEqual(PayDate::fromString('2026-10-28'));
-    })->fails();
+        expect($payDayView->payDate?->toString())->toEqual('2026-10-28');
+    }));
 
     todo('returns a pay date that is the prior Friday if the second-to-last day is a weekend');
     todo('returns a payment date that is four days before the pay date');
