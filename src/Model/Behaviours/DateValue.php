@@ -15,11 +15,11 @@ trait DateValue
 
     public static function fromString(string $date): static
     {
-        $date = DateTimeImmutable::createFromFormat('Y-m-d|', $date);
-        if ($date === false) {
+        $value = DateTimeImmutable::createFromFormat('Y-m-d|', $date);
+        if ($value === false || \DateTime::getLastErrors() !== false) {
             throw new DomainException("{$date} is not a valid date in the YYYY-MM-DD format");
         }
-        return new static($date);
+        return new static($value);
     }
 
     public function toString(): string

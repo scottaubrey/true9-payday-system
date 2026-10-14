@@ -22,10 +22,10 @@ describe('Model\Behaviours\DateValue', function () {
             expect($dateValueObject)->toBeInstanceOf(DateValueDummy::class);
         });
 
-        it('throws with an overflow date string', fails(function () {
+        it('throws with an overflow date string', function () {
             expect(fn() => DateValueDummy::fromString('2026-13-01'))
                 ->toThrow('2026-13-01 is not a valid date in the YYYY-MM-DD format');
-        }));
+        });
     });
     describe('toString', function () {
         it('returns a date string formatted YYYY-MM-DD', function () {
