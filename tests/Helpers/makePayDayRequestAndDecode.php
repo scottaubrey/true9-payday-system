@@ -7,7 +7,7 @@ use Scottaubrey\True9PaydaySystem\ViewModel\PayDay;
 use Slim\Psr7\Factory\ServerRequestFactory;
 use Uri\Rfc3986\Uri;
 
-function makePayDayRequestAndDecode(string $year, string $month): PayDay
+function makePayDayRequestAndDecode(string $year, string $month): ?PayDay
 {
     $app = new Application()->getSlimApp();
     $serverRequestFactory = new ServerRequestFactory();
@@ -22,5 +22,9 @@ function makePayDayRequestAndDecode(string $year, string $month): PayDay
     $body = $response->getBody()->getContents();
     expect($body)->not->toBeNull();
 
-    return PayDay::fromJson($body);
+    try {
+        return PayDay::fromJson($body);
+    } catch (\Exception) {
+        return null;
+    }
 }

@@ -12,7 +12,7 @@ describe('PayDayApi', function () {
     it('returns a pay date that is the second-to-last day of the month', fails(function () {
         $payDayView = makePayDayRequestAndDecode('2026', '10');
 
-        expect($payDayView->payDate?->toString())->toEqual('2026-10-28');
+        expect($payDayView?->payDate?->toString())->toEqual('2026-10-28');
     }));
 
     todo('returns a pay date that is the prior Friday if the second-to-last day is a weekend');
