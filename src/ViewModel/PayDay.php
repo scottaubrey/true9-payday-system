@@ -26,7 +26,7 @@ class PayDay
     {
         return json_encode([
             'payDate' => $this->payDate->toString(),
-            'paymentDate' => $this->paymentDate?->toString(),
+            'paymentDate' => $this->paymentDate->toString(),
         ], flags: JSON_THROW_ON_ERROR);
     }
 }
