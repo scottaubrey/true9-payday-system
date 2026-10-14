@@ -37,6 +37,11 @@ class PayDateCalculator
         return PayDate::fromString($payDate->format('Y-m-d'));
     }
 
+    private function isFriday(DateTimeImmutable $date): bool
+    {
+        return $date->format('N') === '5';
+    }
+
     public function calculatePaymentDateFor(PayDate $payDate): PaymentDate
     {
         $date = DateTimeImmutable::createFromFormat('Y-m-d|', $payDate->toString());
@@ -44,6 +49,9 @@ class PayDateCalculator
             throw new DomainException('PayDate is not valid.');
         }
 
-        return PaymentDate::fromString($date->sub(new DateInterval('P4D'))->format('Y-m-d'));
+        $intervalIncludingPotentialWeekends = $this->isFriday($date) ? 'P4D' : 'P6D';
+        return PaymentDate::fromString($date->sub(new DateInterval($intervalIncludingPotentialWeekends))->format(
+            'Y-m-d',
+        ));
     }
 }
