@@ -29,6 +29,6 @@ trait DateValue
 
     public function toDateTimeImmutable(): DateTimeImmutable
     {
-        return new DateTimeImmutable();
+        return $this->value;
     }
 }
