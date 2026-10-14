@@ -17,4 +17,7 @@ describe('Model\PayDate', function () {
             expect($payDate->toString())->toBe($dateString);
         });
     });
+    describe('toDateTimeImmutable', function () {
+        todo('returns a DateTimeImmutable object from internal representation');
+    });
 });
