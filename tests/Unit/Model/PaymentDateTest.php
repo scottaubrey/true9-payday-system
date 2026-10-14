@@ -17,10 +17,10 @@ describe('Model\PaymentDate', function () {
         });
     });
     describe('toString', function () {
-        it('returns a date string formatted YYYY-MM-DD', fails(function () {
+        it('returns a date string formatted YYYY-MM-DD', function () {
             $dateString = '2026-10-14';
             $paymentDate = PaymentDate::fromString($dateString);
             expect($paymentDate->toString())->toBe($dateString);
-        }));
+        });
     });
 });
