@@ -6,7 +6,7 @@ php-version = "8.5.0"
 
 [source]
 workspace = "."
-paths = ["src/", "app.php"]
+paths = ["src/", "app.php", "tests/"]
 includes = ["vendor"]
 excludes = []
 
@@ -27,6 +27,9 @@ literal-named-argument = { enabled = false }
 halstead = { effort-threshold = 7000 }
 
 [analyzer]
+ignore = [
+    { code = "non-documented-method", in = "tests/" },
+]
 plugins = []
 find-unused-definitions = true
 find-unused-expressions = true
