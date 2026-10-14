@@ -26,7 +26,7 @@ class PayDateCalculator
     public function calculateFor(string $year, string $month): PayDate
     {
         $date = DateTimeImmutable::createFromFormat('Y-m-d|', "{$year}-{$month}-01");
-        if ($date === false) {
+        if ($date === false || DateTimeImmutable::getLastErrors() !== false) {
             throw new DomainException("Year ({$year}) and Month ({$month}) are not valid.");
         }
 
