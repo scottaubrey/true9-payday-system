@@ -19,4 +19,9 @@ class PayDay
 
         return new self(PayDate::fromString($data['payDate']));
     }
+
+    public function toJson(): string
+    {
+        return '';
+    }
 }

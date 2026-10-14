@@ -19,6 +19,10 @@ describe('ViewModel\PayDay', function () {
     });
 
     describe('toJson', function () {
-        todo('maps a PayDate string in YYYY-MM-DD format to a PayDate');
+        it('maps a PayDate string in YYYY-MM-DD format to a PayDate', fails(function () {
+            $payDayView = new PayDay(PayDate::fromString('2026-10-28'));
+
+            expect($payDayView->toJson())->toEqual('{"payDate":"2026-10-28"}');
+        }));
     });
 });
