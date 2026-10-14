@@ -22,6 +22,13 @@ describe('Service\PayDateCalculator', function () {
 
             expect($payDate->toString())->toBe('2026-08-28');
         });
+
+        it('returns an error if the year and month create invalid dates', fails(function () {
+            $payDateCalculator = new PayDateCalculator();
+
+            expect(fn() => $payDateCalculator->calculateFor('2026', '13'))
+                ->toThrow('Year (2026) and Month (13) are not valid.');
+        }));
     });
 
     describe('calculatePaymentDateFor', function () {
