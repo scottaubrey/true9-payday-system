@@ -37,8 +37,13 @@ class PayDateCalculator
         return PayDate::fromString($payDate->format('Y-m-d'));
     }
 
-    public function calculatePaymentDateFor(PayDate $_payDate): PaymentDate
+    public function calculatePaymentDateFor(PayDate $payDate): PaymentDate
     {
-        return PaymentDate::fromString('2026-11-23');
+        $date = DateTimeImmutable::createFromFormat('Y-m-d|', $payDate->toString());
+        if ($date === false) {
+            throw new DomainException('PayDate is not valid.');
+        }
+
+        return PaymentDate::fromString($date->sub(new DateInterval('P4D'))->format('Y-m-d'));
     }
 }

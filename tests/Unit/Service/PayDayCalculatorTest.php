@@ -25,13 +25,13 @@ describe('Service\PayDateCalculator', function () {
     });
 
     describe('calculatePaymentDateFor', function () {
-        it('returns a payment date that is four days less than the payment date', fails(function () {
+        it('returns a payment date that is four days less than the payment date', function () {
             $payDateCalculator = new PayDateCalculator();
 
             $payDate = $payDateCalculator->calculatePaymentDateFor(PayDate::fromString('2026-08-28'));
 
             expect($payDate->toString())->toBe('2026-08-24');
-        }));
+        });
 
         todo('returns a payment date taking into account working days before the payment date');
     });
