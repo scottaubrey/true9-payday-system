@@ -21,11 +21,11 @@ describe('PayDayApi', function () {
         expect($payDayView?->payDate?->toString())->toEqual('2026-11-27');
     });
 
-    it('returns a payment date that is four days before the pay date', fails(function () {
+    it('returns a payment date that is four days before the pay date', function () {
         $payDayView = makePayDayRequestAndDecode('2026', '11');
 
         expect($payDayView?->paymentDate?->toString())->toEqual('2026-11-23');
-    }));
+    });
 
     todo('returns a payment date that is does not count weekend days');
 });

@@ -8,6 +8,7 @@ use Fig\Http\Message\StatusCodeInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Scottaubrey\True9PaydaySystem\Model\PaymentDate;
 use Scottaubrey\True9PaydaySystem\Service\PayDateCalculator;
 use Scottaubrey\True9PaydaySystem\ViewModel\PayDay;
 use Slim\App;
@@ -39,7 +40,7 @@ class Application
             $payDateCalculator = new PayDateCalculator();
             $payDate = $payDateCalculator->calculateFor($year, $month);
 
-            $json = new PayDay($payDate)->toJson();
+            $json = new PayDay($payDate, PaymentDate::fromString('2026-11-23'))->toJson();
 
             $response->getBody()->write($json);
 
