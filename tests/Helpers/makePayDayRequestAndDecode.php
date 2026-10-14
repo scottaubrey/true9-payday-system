@@ -21,6 +21,5 @@ function makePayDayRequestAndDecode(string $year, string $month): ?PayDay
 
     $body = $response->getBody()->getContents();
     expect($body)->not->toBeNull();
-
     return PayDay::fromJson($body);
 }
