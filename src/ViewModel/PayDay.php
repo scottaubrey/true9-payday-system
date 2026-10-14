@@ -12,8 +12,9 @@ class PayDay
         public readonly ?PayDate $payDate = null,
     ) {}
 
-    public static function fromJson(string $_json): self
+    public static function fromJson(string $json): self
     {
+        $_data = json_decode($json, true, flags: JSON_THROW_ON_ERROR);
         return new self();
     }
 }
