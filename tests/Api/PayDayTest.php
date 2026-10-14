@@ -33,9 +33,9 @@ describe('PayDayApi', function () {
         expect($payDayView?->paymentDate?->toString())->toEqual('2026-12-24');
     });
 
-    it('returns an error with invalid dates', fails(function (string $year, string $month) {
+    it('returns an error with invalid dates', function (string $year, string $month) {
         makePayDayRequestAndExpectError($year, $month, 400, '400 Bad Request');
-    }))->with([
+    })->with([
         ['2026', '13'],
         ['2026', 'abc'],
         ['abc', '12'],

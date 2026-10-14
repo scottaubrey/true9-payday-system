@@ -8,9 +8,12 @@ use Fig\Http\Message\StatusCodeInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\MiddlewareInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 use Scottaubrey\True9PaydaySystem\Service\PayDateCalculator;
 use Scottaubrey\True9PaydaySystem\ViewModel\PayDay;
 use Slim\App;
+use Slim\Exception\HttpBadRequestException;
 use Slim\Factory\AppFactory;
 
 class Application
@@ -47,7 +50,21 @@ class Application
             return $response->withHeader('Content-Type', 'application/json');
         });
 
-        $errorMiddleware = $app->addErrorMiddleware(false, true, true);
+        $app->addMiddleware(new class implements MiddlewareInterface {
+            #[\Override]
+            public function process(
+                ServerRequestInterface $request,
+                RequestHandlerInterface $handler,
+            ): ResponseInterface {
+                try {
+                    return $handler->handle($request);
+                } catch (\DomainException $e) {
+                    throw new HttpBadRequestException($request, previous: $e);
+                }
+            }
+        });
+
+        $app->addErrorMiddleware(false, false, false);
 
         return $app;
     }
