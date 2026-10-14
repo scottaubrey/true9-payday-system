@@ -22,6 +22,8 @@ class PayDay
 
     public function toJson(): string
     {
-        return '';
+        return json_encode([
+            'payDate' => $this->payDate->toString(),
+        ], flags: JSON_THROW_ON_ERROR);
     }
 }
