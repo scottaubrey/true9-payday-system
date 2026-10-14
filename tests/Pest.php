@@ -6,9 +6,9 @@ use PHPUnit\Framework\Assert;
 
 function fails(callable $closure): Closure
 {
-    return function () use ($closure) {
+    return function (...$args) use ($closure) {
         try {
-            $closure();
+            $closure(...$args);
         } catch (Throwable $e) {
             expect(true)->toBeTrue();
             return;
