@@ -11,18 +11,27 @@ use Scottaubrey\True9PaydaySystem\Model\PayDate;
 
 class PayDateCalculator
 {
+    private function isWeekend(DateTimeImmutable $date): bool
+    {
+        return $date->format('N') > 5;
+    }
+
+    private function moveBackToFriday(DateTimeImmutable $date): DateTimeImmutable
+    {
+        $numberOfDays = intval($date->format('N')) - 5;
+        return $date->sub(new DateInterval("P{$numberOfDays}D"));
+    }
+
     public function calculateFor(string $year, string $month): PayDate
     {
-        if ($year === '2026' && $month === '11') {
-            return PayDate::fromString('2026-11-27');
-        }
-
         $date = DateTimeImmutable::createFromFormat('Y-m-d|', "{$year}-{$month}-01");
         if ($date === false) {
             throw new DomainException("Year ({$year}) and Month ({$month}) are not valid.");
         }
 
-        $payDate = $date->add(new DateInterval('P1M'))->sub(new DateInterval('P2D'));
+        $potentialPayDate = $date->add(new DateInterval('P1M'))->sub(new DateInterval('P2D'));
+
+        $payDate = $this->isWeekend($potentialPayDate) ? $this->moveBackToFriday($potentialPayDate) : $potentialPayDate;
 
         return PayDate::fromString($payDate->format('Y-m-d'));
     }
