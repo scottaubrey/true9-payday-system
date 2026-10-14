@@ -14,7 +14,12 @@ class PayDay
 
     public static function fromJson(string $json): self
     {
-        $_data = json_decode($json, true, flags: JSON_THROW_ON_ERROR);
+        /** @var array{payDate?: string} */
+        $data = json_decode($json, true, flags: JSON_THROW_ON_ERROR);
+
+        if (array_key_exists('payDate', $data)) {
+            return new self(PayDate::fromString($data['payDate']));
+        }
         return new self();
     }
 }
