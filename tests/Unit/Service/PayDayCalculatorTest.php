@@ -33,6 +33,12 @@ describe('Service\PayDateCalculator', function () {
             expect($payDate->toString())->toBe('2026-08-24');
         });
 
-        todo('returns a payment date taking into account working days before the payment date');
+        it('returns a payment date taking into account working days before the payment date', fails(function () {
+            $payDateCalculator = new PayDateCalculator();
+
+            $payDate = $payDateCalculator->calculatePaymentDateFor(PayDate::fromString('2026-09-29'));
+
+            expect($payDate->toString())->toBe('2026-09-23');
+        }));
     });
 });
