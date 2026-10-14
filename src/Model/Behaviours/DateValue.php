@@ -26,4 +26,9 @@ trait DateValue
     {
         return $this->value->format('Y-m-d');
     }
+
+    public function toDateTimeImmutable(): DateTimeImmutable
+    {
+        return new DateTimeImmutable();
+    }
 }
