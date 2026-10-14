@@ -47,6 +47,8 @@ class Application
             return $response->withHeader('Content-Type', 'application/json');
         });
 
+        $errorMiddleware = $app->addErrorMiddleware(false, true, true);
+
         return $app;
     }
 }
