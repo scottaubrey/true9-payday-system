@@ -2,9 +2,14 @@
 
 declare(strict_types=1);
 
+use Scottaubrey\True9PaydaySystem\ViewModel\PayDay;
+
 describe('ViewModel\PayDay', function () {
     describe('fromJson', function () {
-        todo('throws with an invalid json string');
+        it('throws with an invalid json string', fails(function () {
+            expect(fn() => PayDay::fromJson(''))->toThrow(Throwable::class);
+        }));
+
         todo('maps a date string in YYYY-MM-DD format to a PayDate');
     });
 });
