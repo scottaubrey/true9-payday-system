@@ -3,13 +3,11 @@
 declare(strict_types=1);
 
 use Scottaubrey\True9PaydaySystem\Application;
+use Scottaubrey\True9PaydaySystem\ViewModel\PayDay;
 use Slim\Psr7\Factory\ServerRequestFactory;
 use Uri\Rfc3986\Uri;
 
-/**
- * @return null|array<string, string>
- */
-function makePayDayRequestAndDecode(string $year, string $month): ?array
+function makePayDayRequestAndDecode(string $year, string $month): PayDay
 {
     $app = new Application()->getSlimApp();
     $serverRequestFactory = new ServerRequestFactory();
@@ -19,16 +17,10 @@ function makePayDayRequestAndDecode(string $year, string $month): ?array
 
     //required before treating as a freshly received ResponseInterface;
     $response->getBody()->rewind();
-
-    if ($response->getStatusCode() !== 200) {
-        return null;
-    }
+    expect($response->getStatusCode())->toEqual(200);
 
     $body = $response->getBody()->getContents();
-    if ($body === '') {
-        return null;
-    }
+    expect($response->getStatusCode())->not->toBeNull();
 
-    /** @var array<string, string> */
-    return json_decode($body, true);
+    return PayDay::fromJson($body);
 }
