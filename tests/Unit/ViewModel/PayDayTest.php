@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Scottaubrey\True9PaydaySystem\Model\PayDate;
 use Scottaubrey\True9PaydaySystem\ViewModel\PayDay;
 
 describe('ViewModel\PayDay', function () {
@@ -10,6 +11,10 @@ describe('ViewModel\PayDay', function () {
             expect(fn() => PayDay::fromJson('Invalid JSON'))->toThrow(Exception::class);
         });
 
-        todo('maps a date string in YYYY-MM-DD format to a PayDate');
+        it('maps a date string in YYYY-MM-DD format to a PayDate', fails(function () {
+            $payDayView = PayDay::fromJson('{"payDate":"2026-10-28"}');
+
+            expect($payDayView->payDate)->toEqual(PayDate::fromString('2026-10-28'));
+        }));
     });
 });
