@@ -16,7 +16,7 @@ trait DateValue
     public static function fromString(string $date): static
     {
         $value = DateTimeImmutable::createFromFormat('Y-m-d|', $date);
-        if ($value === false || \DateTime::getLastErrors() !== false) {
+        if ($value === false || DateTimeImmutable::getLastErrors() !== false) {
             throw new DomainException("{$date} is not a valid date in the YYYY-MM-DD format");
         }
         return new static($value);
