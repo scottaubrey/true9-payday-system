@@ -12,5 +12,12 @@ describe('Service\PayDateCalculator', function () {
 
         expect($payDate->toString())->toBe('2026-09-29');
     });
-    todo('returns a pay date that is the prior Friday if the second-to-last day is a weekend');
+
+    it('returns a pay date that is the prior Friday if the second-to-last day is a weekend', fails(function () {
+        $payDateCalculator = new PayDateCalculator();
+
+        $payDate = $payDateCalculator->calculateFor('2026', '08');
+
+        expect($payDate->toString())->toBe('2026-08-28');
+    }));
 });
