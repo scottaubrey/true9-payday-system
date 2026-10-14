@@ -2,9 +2,13 @@
 
 declare(strict_types=1);
 
+use Scottaubrey\True9PaydaySystem\Model\PaymentDate;
+
 describe('Model\PaymentDate', function () {
     describe('fromString', function () {
-        todo('throws with an invalid date string');
+        it('throws with an invalid date string', fails(function () {
+            expect(fn() => PaymentDate::fromString(''))->toThrow(\Exception::class);
+        }));
 
         todo('accepts a valid date string');
     });
