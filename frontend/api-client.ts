@@ -38,10 +38,14 @@ const isValidPayDayView = (data: unknown): data is PayDayViewData => {
 
 export const ApiClient = {
   payday: async (
-    _year: string,
-    _month: string,
+    year: string,
+    month: string,
   ): Promise<ApiClientResponse<PayDayView>> => {
-    const response = await fetch("/api/payday");
+    const url = new URL("/api/payday", window.location.origin);
+    url.searchParams.set("year", year);
+    url.searchParams.set("month", month);
+
+    const response = await fetch(url);
 
     let data: PayDayViewData;
     try {

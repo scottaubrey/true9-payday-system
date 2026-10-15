@@ -22,7 +22,7 @@ describe("ApiClient", () => {
       expect(spyFetch).toHaveBeenCalled();
     });
 
-    it.failing("passes the given year and month as query params", async () => {
+    it("passes the given year and month as query params", async () => {
       spyFetch.mockResolvedValueOnce(
         new Response(`{"payDate":"2026-10-30","paymentDate":"2026-10-26"}`),
       );
