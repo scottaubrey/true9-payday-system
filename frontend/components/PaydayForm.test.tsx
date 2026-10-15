@@ -17,12 +17,13 @@ describe("PaydayForm", () => {
     expect(yearField).toBeTruthy();
   });
 
-  it.failing("Shows a submit button", () => {
+  it("Shows a submit button", () => {
     render(<PaydayForm />);
 
     const submitButton = screen.getByTestId(PaydayFormTestIds.submitButton);
     expect(submitButton).toBeTruthy();
   });
+
   it.todo("Retrieves data from the API");
   it.todo("Shows the pay and payment date on success");
   it.todo("Shows an error message on failure");

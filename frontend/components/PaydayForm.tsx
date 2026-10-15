@@ -27,5 +27,8 @@ export const PaydayForm = () => (
       max="9999"
       name="year"
     ></input>
+    <button data-testid={PaydayFormTestIds.submitButton} type="button">
+      Calculate dates
+    </button>
   </form>
 );
