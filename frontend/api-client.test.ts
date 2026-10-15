@@ -69,6 +69,17 @@ describe("ApiClient", () => {
       expect(response.error).toBe("Validation error");
     });
 
-    it.todo("returns a error object when the return data is not JSON");
+    it.failing("returns a error object when the return data is not JSON", async () => {
+      spyFetch.mockResolvedValueOnce(new Response(`This is not JSON`));
+
+      const response = await ApiClient.payday("2026", "10");
+
+      if (response.success) {
+        expect().fail();
+        return;
+      }
+
+      expect(response.error).toBe("Validation error");
+    });
   });
 });
