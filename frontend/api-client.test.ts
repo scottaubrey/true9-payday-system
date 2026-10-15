@@ -56,6 +56,17 @@ describe("ApiClient", () => {
       expect(response.error).toBe("An error occurred");
     });
 
-    it.todo("returns a error object when the data structure is incorrect");
+    it.failing("returns a error object when the data structure is incorrect", async () => {
+      spyFetch.mockResolvedValueOnce(new Response(`{"random":"data"}`));
+
+      const response = await ApiClient.payday("2026", "10");
+
+      if (response.success) {
+        expect().fail();
+        return;
+      }
+
+      expect(response.error).toBe("Validation error");
+    });
   });
 });
