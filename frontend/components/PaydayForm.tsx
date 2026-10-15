@@ -26,7 +26,7 @@ export const PaydayForm = ({
   };
 
   return (
-    <form>
+    <form data-testid={PaydayFormTestIds.form}>
       <select
         data-testid={PaydayFormTestIds.month}
         name="month"

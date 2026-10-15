@@ -4,7 +4,7 @@ import { PaydayFormTestIds } from "../components/PaydayForm";
 import { PaydayCalculator } from "./PaydayCalculator";
 
 describe("PaydayCalculator", () => {
-  it.failing("shows a pay day form", () => {
+  it("shows a pay day form", () => {
     render(<PaydayCalculator />);
 
     const paydayCalculatorForm = screen.getByTestId(PaydayFormTestIds.form);
