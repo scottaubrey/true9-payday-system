@@ -1,6 +1,7 @@
 [tools]
 php = "8.5.11"
 mago = "1.56.3"
+bun = "1.4.3"
 
 [tasks.format]
 run = "mago format"
@@ -22,3 +23,12 @@ depends = ["format", "lint", "analyse", "test"]
 [tasks.start]
 run = "php -S localhost:8888 -t public/ app.php"
 depends = ["build"]
+
+[tasks.check-frontend]
+run = "bun check frontend/"
+
+[tasks.test-frontend]
+run = "bun test --check frontend/"
+
+[tasks.run-frontend]
+run = "bun run --check frontend/server.ts"

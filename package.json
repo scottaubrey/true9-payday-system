@@ -1,0 +1,22 @@
+{
+  "name": "true9-payday-system",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "typecheck": "bun check"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0"
+  },
+  "peerDependencies": {
+    "typescript": "^7"
+  },
+  "dependencies": {
+    "@picocss/pico": "^2.1.1",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  }
+}

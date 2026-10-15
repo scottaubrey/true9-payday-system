@@ -25,3 +25,25 @@ setup basic structure:
 - run `mago init` and `pest init`
 - create `app.php`
 - Setup mise commands for `mise check`, `mise test` and `mise start`
+
+## Frontend
+
+Options:
+
+1. Server-side rendered HTML from PHP server
+2. Static HTML page with JS
+3. Bundled HTML page with JS
+4. React-based SPA
+
+I chose 4) with BunJS because of it's batteries included approach to this kind of problem.
+
+I will write a server that proxies to the PHP backend in dev, and a build process that will output to the public folder, allowing the PHP server to serve it up.
+
+Setup basic structure:
+
+- run `mise use --pin bun`
+- run `bun add react react-dom @picocss/pico` and `bun add -d @types/react @types/react-dom`
+- add `DOM` to tsconfig.json libs
+- setup mise commands for `mise check-frontend`, `mise test-frontend` and `mise start-frontend`
+- create a basic HTML page, index module to load react and Pico CSS, App module to output basic page structure
+- For the developer experience - create `server.ts` that would use HMR to create a fast dev experience, and proxy to a running PHP server.
