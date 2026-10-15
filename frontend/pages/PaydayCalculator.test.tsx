@@ -22,7 +22,7 @@ describe("PaydayCalculator", () => {
     expect(paydayCalculatorForm).toBeVisible();
   });
 
-  it.failing("shows a pay day result when the form is submitted", async () => {
+  it("shows a pay day result when the form is submitted", async () => {
     const user = userEvent.setup();
     spyFetch.mockResolvedValueOnce(
       new Response(`{"payDate":"2026-10-30","paymentDate":"2026-10-26"}`),
