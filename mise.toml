@@ -2,6 +2,7 @@
 php = "8.5.11"
 mago = "1.56.3"
 bun = "1.4.3"
+biome = "2.5.15"
 
 [tasks.format]
 run = "mago format"
@@ -24,11 +25,29 @@ depends = ["format", "lint", "analyse", "test"]
 run = "php -S localhost:8888 -t public/ app.php"
 depends = ["build"]
 
-[tasks.check-frontend]
-run = "bun check frontend/"
+[tasks.install-deps-frontend]
+run = "bun install"
+
+[tasks.format-frontend]
+run = "biome format"
+depends = ["install-deps-frontend"]
+[tasks.lint-frontend]
+run = "biome lint"
+depends = ["install-deps-frontend"]
+[tasks.type-check-frontend]
+run = ["bun check frontend/"]
+depends = ["install-deps-frontend"]
+[tasks.analyse-frontend]
+run = ["biome check"]
+depends = ["install-deps-frontend"]
 
 [tasks.test-frontend]
 run = "bun test --check frontend/"
+depends = ["install-deps-frontend"]
+
+[tasks.check-frontend]
+depends = ["format-frontend", "lint-frontend", "type-check-frontend", "analyse-frontend", "test-frontend"]
 
 [tasks.run-frontend]
 run = "bun run --check frontend/server.ts"
+depends = ["install-deps-frontend"]
