@@ -3,18 +3,6 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { PaydayForm, PaydayFormTestIds } from "./PaydayForm";
 
-const paydayApiClientMock = mock((_year: string, _month: string) =>
-  Promise.resolve({
-    success: true as const,
-    data: { payDate: new Date(), paymentDate: new Date() },
-  }),
-);
-mock.module("../api-client.ts", () => ({
-  ApiClient: {
-    payday: paydayApiClientMock,
-  },
-}));
-
 describe("PaydayForm", () => {
   it("Shows a month field", () => {
     render(<PaydayForm />);
