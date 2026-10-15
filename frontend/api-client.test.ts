@@ -56,7 +56,7 @@ describe("ApiClient", () => {
       expect(response.error).toBe("An error occurred");
     });
 
-    it.failing("returns a error object when the data structure is incorrect", async () => {
+    it("returns a error object when the data structure is incorrect", async () => {
       spyFetch.mockResolvedValueOnce(new Response(`{"random":"data"}`));
 
       const response = await ApiClient.payday("2026", "10");

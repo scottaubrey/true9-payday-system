@@ -10,6 +10,31 @@ type PayDayView = {
   paymentDate: Date;
 };
 
+const isValidPayDayView = (
+  data: unknown,
+): data is { payDate: string; paymentDate: string } => {
+  if (typeof data !== "object") {
+    return false;
+  }
+
+  if (data === null) {
+    return false;
+  }
+
+  if (!("payDate" in data) || !("paymentDate" in data)) {
+    return false;
+  }
+
+  if (
+    typeof data.payDate !== "string" ||
+    typeof data.paymentDate !== "string"
+  ) {
+    return false;
+  }
+
+  return true;
+};
+
 export const ApiClient = {
   payday: async (
     _year: string,
@@ -23,6 +48,15 @@ export const ApiClient = {
         error: data.message,
       };
     }
+
+    if (!isValidPayDayView(data)) {
+      console.log("Validation");
+      return {
+        success: false,
+        error: "Validation error",
+      };
+    }
+
     return {
       success: true,
       data: {
