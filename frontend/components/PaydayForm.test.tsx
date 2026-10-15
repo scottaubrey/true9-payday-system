@@ -3,7 +3,7 @@ import { render, screen } from "@testing-library/react";
 import { PaydayForm } from "./PaydayForm";
 
 describe("PaydayForm", () => {
-  it.failing("Shows a month field", () => {
+  it("Shows a month field", () => {
     render(<PaydayForm />);
 
     const monthField = screen.getByTestId("PaydayForm.month");
