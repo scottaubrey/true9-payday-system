@@ -9,10 +9,9 @@ type PayDayView = {
   payDate: Date;
   paymentDate: Date;
 };
+type PayDayViewData = { payDate: string; paymentDate: string };
 
-const isValidPayDayView = (
-  data: unknown,
-): data is { payDate: string; paymentDate: string } => {
+const isValidPayDayView = (data: unknown): data is PayDayViewData => {
   if (typeof data !== "object") {
     return false;
   }
@@ -41,11 +40,30 @@ export const ApiClient = {
     _month: string,
   ): Promise<Response<PayDayView>> => {
     const response = await fetch("/api/payday");
-    const data = await response.json();
-    if (response.status !== 200) {
+
+    let data: PayDayViewData;
+    try {
+      const rawData = await response.json();
+
+      if (response.status !== 200) {
+        return {
+          success: false,
+          error: "message" in rawData ? rawData.message : response.statusText,
+        };
+      }
+
+      if (!isValidPayDayView(rawData)) {
+        return {
+          success: false,
+          error: "Validation error",
+        };
+      }
+
+      data = rawData;
+    } catch (_error: unknown) {
       return {
         success: false,
-        error: data.message,
+        error: "Validation error",
       };
     }
 

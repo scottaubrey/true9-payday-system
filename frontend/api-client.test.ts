@@ -69,7 +69,7 @@ describe("ApiClient", () => {
       expect(response.error).toBe("Validation error");
     });
 
-    it.failing("returns a error object when the return data is not JSON", async () => {
+    it("returns a error object when the return data is not JSON", async () => {
       spyFetch.mockResolvedValueOnce(new Response(`This is not JSON`));
 
       const response = await ApiClient.payday("2026", "10");
