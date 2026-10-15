@@ -5,6 +5,7 @@ export const PaydayFormTestIds = {
   month: "PaydayForm.month",
   year: "PaydayForm.year",
   submitButton: "PaydayForm.submitButton",
+  payDateResult: "PaydayForm.payDateResult",
 };
 
 export const PaydayForm = () => {
