@@ -1,5 +1,4 @@
 import { useRef, useState } from "react";
-import { ApiClient } from "../api-client";
 
 export const PaydayFormTestIds = {
   month: "PaydayForm.month",
@@ -8,16 +7,16 @@ export const PaydayFormTestIds = {
   payDateResult: "PaydayForm.payDateResult",
 };
 
-export const PaydayForm = () => {
+export const PaydayForm = (_props: {
+  onSubmit?: (year: string, month: string) => void;
+}) => {
   const nowDateRef = useRef(new Date());
   const [formValues, setFormValues] = useState({
     month: String(nowDateRef.current.getMonth()),
     year: String(nowDateRef.current.getUTCFullYear()),
   });
 
-  const onClickHandler = () => {
-    ApiClient.payday(formValues.year, formValues.month);
-  };
+  const onClickHandler = async () => {};
 
   return (
     <form>

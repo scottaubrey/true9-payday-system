@@ -3,9 +3,11 @@ type ErrorResponse = {
   error: string;
 };
 type SuccessResponse<ViewType> = { success: true; data: ViewType };
-type Response<ViewType> = SuccessResponse<ViewType> | ErrorResponse;
+export type ApiClientResponse<ViewType> =
+  | SuccessResponse<ViewType>
+  | ErrorResponse;
 
-type PayDayView = {
+export type PayDayView = {
   payDate: Date;
   paymentDate: Date;
 };
@@ -38,7 +40,7 @@ export const ApiClient = {
   payday: async (
     _year: string,
     _month: string,
-  ): Promise<Response<PayDayView>> => {
+  ): Promise<ApiClientResponse<PayDayView>> => {
     const response = await fetch("/api/payday");
 
     let data: PayDayViewData;

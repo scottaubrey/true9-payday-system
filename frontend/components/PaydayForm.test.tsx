@@ -37,10 +37,10 @@ describe("PaydayForm", () => {
     expect(submitButton).toBeVisible();
   });
 
-  it("Retrieves data from the API when the submit button is pressed", async () => {
+  it.failing("calls the callback when the submit button is pressed", async () => {
     const user = userEvent.setup();
-    const { ApiClient } = await import("../api-client.ts");
-    render(<PaydayForm />);
+    const callBack = mock((_year, _month) => {});
+    render(<PaydayForm onSubmit={callBack} />);
 
     const monthField = screen.getByTestId(PaydayFormTestIds.month);
     const yearField = screen.getByTestId(PaydayFormTestIds.year);
@@ -51,32 +51,6 @@ describe("PaydayForm", () => {
     await user.type(yearField, "2026");
     await user.click(submitButton);
 
-    expect(ApiClient.payday).toHaveBeenCalledWith("2026", "1");
+    expect(callBack).toHaveBeenCalledWith("2026", "1");
   });
-
-  it.failing("Shows the pay and payment date on success", async () => {
-    const user = userEvent.setup();
-    render(<PaydayForm />);
-    paydayApiClientMock.mockResolvedValueOnce({
-      success: true,
-      data: {
-        payDate: new Date("2026-01-30"),
-        paymentDate: new Date("2026-01-26"),
-      },
-    });
-
-    const monthField = screen.getByTestId(PaydayFormTestIds.month);
-    const yearField = screen.getByTestId(PaydayFormTestIds.year);
-    const submitButton = screen.getByTestId(PaydayFormTestIds.submitButton);
-
-    await user.selectOptions(monthField, "1");
-    await user.clear(yearField);
-    await user.type(yearField, "2026");
-    await user.click(submitButton);
-
-    expect(
-      screen.getByTestId(PaydayFormTestIds.payDateResult),
-    ).toHaveTextContent("Fri Jan 30 2026");
-  });
-  it.todo("Shows an error message on failure");
 });
