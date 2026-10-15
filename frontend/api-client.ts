@@ -1,19 +1,21 @@
 type ErrorResponse = {
+  success: false;
   message: string;
 };
-type SuccessResponse<ViewType> = { data: ViewType };
+type SuccessResponse<ViewType> = { success: true; data: ViewType };
 type Response<ViewType> = SuccessResponse<ViewType> | ErrorResponse;
 
-type DateString = string;
-
 type PayDayView = {
-  payDate: DateString;
-  paymentDate: DateString;
+  payDate: Date;
+  paymentDate: Date;
 };
 
 export const ApiClient = {
-  payday: (_year: string, _month: string): Response<PayDayView> | undefined => {
+  payday: (_year: string, _month: string): Response<PayDayView> => {
     fetch("/api/payday");
-    return undefined;
+    return {
+      success: false,
+      message: "no",
+    };
   },
 };
