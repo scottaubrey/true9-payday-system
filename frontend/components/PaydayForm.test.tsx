@@ -31,7 +31,7 @@ describe("PaydayForm", () => {
     expect(submitButton).toBeVisible();
   });
 
-  it.failing("Retrieves data from the API when the submit button is pressed", async () => {
+  it("Retrieves data from the API when the submit button is pressed", async () => {
     const user = userEvent.setup();
     const { ApiClient } = await import("../api-client.ts");
     render(<PaydayForm />);

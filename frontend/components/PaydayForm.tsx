@@ -1,34 +1,63 @@
+import { useRef, useState } from "react";
+import { ApiClient } from "../api-client";
+
 export const PaydayFormTestIds = {
   month: "PaydayForm.month",
   year: "PaydayForm.year",
   submitButton: "PaydayForm.submitButton",
 };
 
-export const PaydayForm = () => (
-  <form>
-    <select data-testid={PaydayFormTestIds.month} name="month" required>
-      <option value="01">January</option>
-      <option value="02">February</option>
-      <option value="03">March</option>
-      <option value="04">April</option>
-      <option value="05">May</option>
-      <option value="06">June</option>
-      <option value="07">July</option>
-      <option value="08">August</option>
-      <option value="09">September</option>
-      <option value="10">October</option>
-      <option value="11">November</option>
-      <option value="12">December</option>
-    </select>
-    <input
-      data-testid={PaydayFormTestIds.year}
-      type="number"
-      min="2026"
-      max="9999"
-      name="year"
-    ></input>
-    <button data-testid={PaydayFormTestIds.submitButton} type="button">
-      Calculate dates
-    </button>
-  </form>
-);
+export const PaydayForm = () => {
+  const nowDateRef = useRef(new Date());
+  const [formValues, setFormValues] = useState({
+    month: String(nowDateRef.current.getMonth()),
+    year: String(nowDateRef.current.getUTCFullYear()),
+  });
+
+  const onClickHandler = () => {
+    ApiClient.payday(formValues.year, formValues.month);
+  };
+
+  return (
+    <form>
+      <select
+        data-testid={PaydayFormTestIds.month}
+        name="month"
+        required
+        value={formValues.month}
+        onChange={(e) =>
+          setFormValues({ ...formValues, month: e.target.value })
+        }
+      >
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+      <input
+        data-testid={PaydayFormTestIds.year}
+        type="number"
+        min="2026"
+        max="9999"
+        name="year"
+        value={formValues.year}
+        onChange={(e) => setFormValues({ ...formValues, year: e.target.value })}
+      ></input>
+      <button
+        data-testid={PaydayFormTestIds.submitButton}
+        type="button"
+        onClick={onClickHandler}
+      >
+        Calculate dates
+      </button>
+    </form>
+  );
+};
