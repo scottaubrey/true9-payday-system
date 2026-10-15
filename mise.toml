@@ -48,6 +48,6 @@ depends = ["install-deps-frontend"]
 [tasks.check-frontend]
 depends = ["format-frontend", "lint-frontend", "type-check-frontend", "analyse-frontend", "test-frontend"]
 
-[tasks.run-frontend]
+[tasks.start-frontend]
 run = "bun run --check frontend/server.ts"
 depends = ["install-deps-frontend"]
