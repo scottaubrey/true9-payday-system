@@ -9,7 +9,7 @@ describe("PaydayForm", () => {
     const monthField = screen.getByTestId("PaydayForm.month");
     expect(monthField).toBeTruthy();
   });
-  it.failing("Shows a year field", () => {
+  it("Shows a year field", () => {
     render(<PaydayForm />);
 
     const yearField = screen.getByTestId("PaydayForm.year");

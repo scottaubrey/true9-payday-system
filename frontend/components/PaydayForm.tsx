@@ -1,5 +1,6 @@
 export const PaydayFormTestIds = {
   month: "PaydayForm.month",
+  year: "PaydayForm.year",
 };
 
 export const PaydayForm = () => (
@@ -18,5 +19,12 @@ export const PaydayForm = () => (
       <option value="11">November</option>
       <option value="12">December</option>
     </select>
+    <input
+      data-testid={PaydayFormTestIds.year}
+      type="number"
+      min="2026"
+      max="9999"
+      name="year"
+    ></input>
   </form>
 );
