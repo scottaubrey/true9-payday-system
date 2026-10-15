@@ -38,7 +38,24 @@ describe("ApiClient", () => {
         paymentDate: new Date("2026-10-26"),
       });
     });
-    it.todo("returns a error object when the api fails");
+
+    it.failing("returns a error object when the api fails", async () => {
+      spyFetch.mockResolvedValueOnce(
+        new Response(`{"message":"An error occurred"}`, {
+          status: 400,
+        }),
+      );
+
+      const response = await ApiClient.payday("2026", "10");
+
+      if (response.success) {
+        expect().fail();
+        return;
+      }
+
+      expect(response.error).toBe("An error occurred");
+    });
+
     it.todo("returns a error object when the data structure is incorrect");
   });
 });

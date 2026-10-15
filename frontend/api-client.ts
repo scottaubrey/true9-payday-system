@@ -1,6 +1,6 @@
 type ErrorResponse = {
   success: false;
-  message: string;
+  error: string;
 };
 type SuccessResponse<ViewType> = { success: true; data: ViewType };
 type Response<ViewType> = SuccessResponse<ViewType> | ErrorResponse;
