@@ -1,4 +1,4 @@
-import { PaydayForm } from "./components/PaydayForm";
+import { PaydayCalculator } from "./pages/PaydayCalculator";
 
 export const App = () => (
   <>
@@ -6,7 +6,7 @@ export const App = () => (
       <h1>True9 Payday system</h1>
     </header>
     <main>
-      <PaydayForm />
+      <PaydayCalculator />
     </main>
   </>
 );
