@@ -39,7 +39,7 @@ describe("ApiClient", () => {
       });
     });
 
-    it.failing("returns a error object when the api fails", async () => {
+    it("returns a error object when the api fails", async () => {
       spyFetch.mockResolvedValueOnce(
         new Response(`{"message":"An error occurred"}`, {
           status: 400,
