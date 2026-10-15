@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 
 export const PaydayFormTestIds = {
+  form: "PaydayForm.form",
   month: "PaydayForm.month",
   year: "PaydayForm.year",
   submitButton: "PaydayForm.submitButton",
