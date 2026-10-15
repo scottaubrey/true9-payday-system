@@ -37,7 +37,7 @@ describe("PaydayForm", () => {
     expect(submitButton).toBeVisible();
   });
 
-  it.failing("calls the callback when the submit button is pressed", async () => {
+  it("calls the callback when the submit button is pressed", async () => {
     const user = userEvent.setup();
     const callBack = mock((_year, _month) => {});
     render(<PaydayForm onSubmit={callBack} />);

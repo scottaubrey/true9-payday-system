@@ -7,7 +7,9 @@ export const PaydayFormTestIds = {
   payDateResult: "PaydayForm.payDateResult",
 };
 
-export const PaydayForm = (_props: {
+export const PaydayForm = ({
+  onSubmit,
+}: {
   onSubmit?: (year: string, month: string) => void;
 }) => {
   const nowDateRef = useRef(new Date());
@@ -16,7 +18,11 @@ export const PaydayForm = (_props: {
     year: String(nowDateRef.current.getUTCFullYear()),
   });
 
-  const onClickHandler = async () => {};
+  const onClickHandler = async () => {
+    if (onSubmit) {
+      onSubmit(formValues.year, formValues.month);
+    }
+  };
 
   return (
     <form>
