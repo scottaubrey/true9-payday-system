@@ -1,7 +1,14 @@
-import { describe, it } from "bun:test";
+import { describe, it, expect } from "bun:test";
+import { render, screen } from "@testing-library/react";
+import { PaydayForm } from "./PaydayForm";
 
 describe("PaydayForm", () => {
-  it.todo("Shows a month field");
+  it.failing("Shows a month field", () => {
+    render(<PaydayForm />);
+
+    const monthField = screen.getByTestId("PaydayForm.month");
+    expect(monthField).toBeTruthy();
+  });
   it.todo("Shows a year field");
   it.todo("Shows a submit button");
   it.todo("Retrieves data from the API");
