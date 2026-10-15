@@ -22,7 +22,7 @@ describe("ApiClient", () => {
       expect(spyFetch).toHaveBeenCalled();
     });
 
-    it.failing("returns a success object for the payday view", async () => {
+    it("returns a success object for the payday view", async () => {
       spyFetch.mockResolvedValueOnce(
         new Response('{"payDate":"2026-10-30","paymentDate":"2026-10-26"}'),
       );

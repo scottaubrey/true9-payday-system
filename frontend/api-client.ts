@@ -11,11 +11,18 @@ type PayDayView = {
 };
 
 export const ApiClient = {
-  payday: (_year: string, _month: string): Response<PayDayView> => {
-    fetch("/api/payday");
+  payday: async (
+    _year: string,
+    _month: string,
+  ): Promise<Response<PayDayView>> => {
+    const response = await fetch("/api/payday");
+    const data = await response.json();
     return {
-      success: false,
-      message: "no",
+      success: true,
+      data: {
+        payDate: new Date(data.payDate),
+        paymentDate: new Date(data.paymentDate),
+      },
     };
   },
 };
