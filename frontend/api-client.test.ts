@@ -68,5 +68,7 @@ describe("ApiClient", () => {
 
       expect(response.error).toBe("Validation error");
     });
+
+    it.todo("returns a error object when the return data is not JSON");
   });
 });
