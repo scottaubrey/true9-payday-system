@@ -3,7 +3,7 @@ import { render, screen } from "@testing-library/react";
 import { PaydayResult, PaydayResultTestIds } from "./PaydayResult";
 
 describe("PaydayResult", () => {
-  it.failing("shows a pay date in the expected format", () => {
+  it("shows a pay date in the expected format", () => {
     render(<PaydayResult payDate={new Date("2026-10-30")} />);
 
     const payDateResult = screen.getByTestId(PaydayResultTestIds.payDate);
