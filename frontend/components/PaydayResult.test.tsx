@@ -10,7 +10,7 @@ describe("PaydayResult", () => {
     expect(payDateResult).toHaveTextContent("Friday, 30/10/2026");
   });
 
-  it.failing("shows a payment date in the expected format", () => {
+  it("shows a payment date in the expected format", () => {
     render(
       <PaydayResult
         payDate={new Date("2026-10-30")}

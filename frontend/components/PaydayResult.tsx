@@ -5,6 +5,7 @@ export const PaydayResultTestIds = {
 
 export const PaydayResult = ({
   payDate,
+  paymentDate,
 }: {
   payDate: Date;
   paymentDate?: Date;
@@ -14,6 +15,15 @@ export const PaydayResult = ({
       <dt>Pay Date</dt>
       <dd data-testid={PaydayResultTestIds.payDate}>
         {payDate.toLocaleDateString("en-GB", {
+          weekday: "long",
+          day: "numeric",
+          month: "2-digit",
+          year: "numeric",
+        })}
+      </dd>
+      <dt>Payment Date</dt>
+      <dd data-testid={PaydayResultTestIds.paymentDate}>
+        {paymentDate?.toLocaleDateString("en-GB", {
           weekday: "long",
           day: "numeric",
           month: "2-digit",
