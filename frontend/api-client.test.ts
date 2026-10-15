@@ -13,7 +13,7 @@ describe("ApiClient", () => {
   });
 
   describe("payday", () => {
-    it.failing("fetches from the API", async () => {
+    it("fetches from the API", async () => {
       spyFetch.mockResolvedValueOnce(new Response());
 
       await ApiClient.payday("2026", "10");

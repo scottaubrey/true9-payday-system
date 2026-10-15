@@ -13,6 +13,7 @@ type PayDayView = {
 
 export const ApiClient = {
   payday: (_year: string, _month: string): Response<PayDayView> | undefined => {
+    fetch("/api/payday");
     return undefined;
   },
 };
