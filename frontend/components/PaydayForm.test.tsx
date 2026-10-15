@@ -1,18 +1,18 @@
 import { describe, it, expect } from "bun:test";
 import { render, screen } from "@testing-library/react";
-import { PaydayForm } from "./PaydayForm";
+import { PaydayForm, PaydayFormTestIds } from "./PaydayForm";
 
 describe("PaydayForm", () => {
   it("Shows a month field", () => {
     render(<PaydayForm />);
 
-    const monthField = screen.getByTestId("PaydayForm.month");
+    const monthField = screen.getByTestId(PaydayFormTestIds.month);
     expect(monthField).toBeTruthy();
   });
   it("Shows a year field", () => {
     render(<PaydayForm />);
 
-    const yearField = screen.getByTestId("PaydayForm.year");
+    const yearField = screen.getByTestId(PaydayFormTestIds.year);
     expect(yearField).toBeTruthy();
   });
   it.todo("Shows a submit button");
