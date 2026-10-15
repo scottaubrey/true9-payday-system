@@ -1,6 +1,14 @@
-export const PaydayResultTestIds = { payDate: "PaydayResult.payDate" };
+export const PaydayResultTestIds = {
+  payDate: "PaydayResult.payDate",
+  paymentDate: "PaydayResult.paymentDate",
+};
 
-export const PaydayResult = ({ payDate }: { payDate: Date }) => (
+export const PaydayResult = ({
+  payDate,
+}: {
+  payDate: Date;
+  paymentDate?: Date;
+}) => (
   <>
     <dl>
       <dt>Pay Date</dt>

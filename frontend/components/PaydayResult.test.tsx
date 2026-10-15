@@ -10,5 +10,15 @@ describe("PaydayResult", () => {
     expect(payDateResult).toHaveTextContent("Friday, 30/10/2026");
   });
 
-  it.todo("shows a payment date in the expected format");
+  it.failing("shows a payment date in the expected format", () => {
+    render(
+      <PaydayResult
+        payDate={new Date("2026-10-30")}
+        paymentDate={new Date("2026-10-26")}
+      />,
+    );
+
+    const payDateResult = screen.getByTestId(PaydayResultTestIds.paymentDate);
+    expect(payDateResult).toHaveTextContent("Monday, 26/10/2026");
+  });
 });
