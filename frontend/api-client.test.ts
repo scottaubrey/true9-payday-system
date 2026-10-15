@@ -22,6 +22,22 @@ describe("ApiClient", () => {
       expect(spyFetch).toHaveBeenCalled();
     });
 
+    it.failing("passes the given year and month as query params", async () => {
+      spyFetch.mockResolvedValueOnce(
+        new Response(`{"payDate":"2026-10-30","paymentDate":"2026-10-26"}`),
+      );
+
+      await ApiClient.payday("2026", "10");
+
+      const lastFetchCallUrl = spyFetch.mock.calls[0]?.[0];
+      if (!(lastFetchCallUrl instanceof URL)) {
+        expect().fail();
+        return;
+      }
+      expect(lastFetchCallUrl.searchParams.get("year")).toEqual("2026");
+      expect(lastFetchCallUrl.searchParams.get("month")).toEqual("10");
+    });
+
     it("returns a success object for the payday view", async () => {
       spyFetch.mockResolvedValueOnce(
         new Response('{"payDate":"2026-10-30","paymentDate":"2026-10-26"}'),
