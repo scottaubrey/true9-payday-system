@@ -14,7 +14,9 @@ describe("ApiClient", () => {
 
   describe("payday", () => {
     it("fetches from the API", async () => {
-      spyFetch.mockResolvedValueOnce(new Response());
+      spyFetch.mockResolvedValueOnce(
+        new Response(`{"payDate":"2026-10-30","paymentDate":"2026-10-26"}`),
+      );
 
       await ApiClient.payday("2026", "10");
       expect(spyFetch).toHaveBeenCalled();
@@ -31,7 +33,7 @@ describe("ApiClient", () => {
         expect().fail();
         return;
       }
-      expect(response.data).toBe({
+      expect(response.data).toEqual({
         payDate: new Date("2026-10-30"),
         paymentDate: new Date("2026-10-26"),
       });
