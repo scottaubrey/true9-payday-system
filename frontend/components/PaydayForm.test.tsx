@@ -9,7 +9,12 @@ describe("PaydayForm", () => {
     const monthField = screen.getByTestId("PaydayForm.month");
     expect(monthField).toBeTruthy();
   });
-  it.todo("Shows a year field");
+  it.failing("Shows a year field", () => {
+    render(<PaydayForm />);
+
+    const yearField = screen.getByTestId("PaydayForm.year");
+    expect(yearField).toBeTruthy();
+  });
   it.todo("Shows a submit button");
   it.todo("Retrieves data from the API");
   it.todo("Shows the pay and payment date on success");
