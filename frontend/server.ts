@@ -3,7 +3,7 @@ import index from "./index.html";
 const API_TARGET = "http://localhost:8888/";
 
 // run and cleanup PHP API server
-const phpServer = Bun.spawn(["mise", "start"], {
+const phpServer = Bun.spawn(["mise", "start-backend"], {
   stdout: "inherit",
   stderr: "inherit",
 });
