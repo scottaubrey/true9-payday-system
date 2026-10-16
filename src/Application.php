@@ -35,7 +35,7 @@ class Application
             $month = $params['month'] ?? null;
 
             if (!is_string($year) || !is_string($month)) {
-                $response->getBody()->write('{"error":"Query params require strings"}');
+                $response->getBody()->write('{"message":"Query params require strings"}');
                 return $response->withStatus(StatusCodeInterface::STATUS_BAD_REQUEST);
             }
 
