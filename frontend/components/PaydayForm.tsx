@@ -16,7 +16,7 @@ export const PaydayForm = ({
   const nowDateRef = useRef(new Date());
   const [formValues, setFormValues] = useState({
     month: String(nowDateRef.current.getMonth()),
-    year: String(nowDateRef.current.getUTCFullYear()),
+    year: String(nowDateRef.current.getFullYear()),
   });
 
   const onClickHandler = async () => {
@@ -52,7 +52,7 @@ export const PaydayForm = ({
       <input
         data-testid={PaydayFormTestIds.year}
         type="number"
-        min="2026"
+        min={nowDateRef.current.getFullYear()}
         max="9999"
         name="year"
         value={formValues.year}
