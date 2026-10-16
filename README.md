@@ -2,8 +2,8 @@
 
 ## Useful docs
 
-docs/T9-TECH-TEST-25 v1.0.pdf - Original spec.
-docs/dev-log.md - log of development commits, including assumptions and decisions
+- docs/T9-TECH-TEST-25 v1.0.pdf - Original spec.
+- docs/dev-log.md - log of development commits, including assumptions and decisions
 
 ## Prerequisites
 
@@ -43,7 +43,9 @@ Run the Frontend dev server using `bun run frontend/server.ts`
 
 or
 
-use `mise start-frontend` to install dependencies and start the dev server
+use `mise start-frontend` to install dependencies and start the dev server.
+
+NOTE: This will also run the PHP backend dev server.
 
 ### Running pre-commit checks
 
