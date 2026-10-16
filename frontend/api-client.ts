@@ -74,7 +74,6 @@ export const ApiClient = {
     }
 
     if (!isValidPayDayView(data)) {
-      console.log("Validation");
       return {
         success: false,
         error: "Validation error",
