@@ -18,7 +18,7 @@ describe("PaydayForm", () => {
     expect(yearField).toBeVisible();
   });
 
-  it.failing("Shows current month and year by default", () => {
+  it("Shows current month and year by default", () => {
     render(<PaydayForm />);
 
     const today = new Date();
