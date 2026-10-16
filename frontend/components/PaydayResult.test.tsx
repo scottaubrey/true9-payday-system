@@ -18,4 +18,20 @@ describe("PaydayResult", () => {
       screen.getByTestId(PaydayResultTestIds.paymentDate),
     ).toHaveTextContent("Monday, 26/10/2026");
   });
+
+  it.failing("shows a pay and payment date with leading zero padding", () => {
+    render(
+      <PaydayResult
+        payDate={new Date("2026-01-09")}
+        paymentDate={new Date("2026-01-05")}
+      />,
+    );
+
+    expect(screen.getByTestId(PaydayResultTestIds.payDate)).toHaveTextContent(
+      "Friday, 09/01/2026",
+    );
+    expect(
+      screen.getByTestId(PaydayResultTestIds.paymentDate),
+    ).toHaveTextContent("Monday, 05/01/2026");
+  });
 });
