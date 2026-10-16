@@ -3,7 +3,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { PaydayFormTestIds } from "../components/PaydayForm";
 import { PaydayResultTestIds } from "../components/PaydayResult";
-import { PaydayCalculator } from "./PaydayCalculator";
+import { PaydayCalculator, PaydayCalculatorTestIds } from "./PaydayCalculator";
 
 const spyFetch = spyOn(globalThis, "fetch");
 
@@ -45,5 +45,26 @@ describe("PaydayCalculator", () => {
     );
     expect(payDateResult).toHaveTextContent("Friday, 30/10/2026");
     expect(paymentDateResult).toHaveTextContent("Monday, 26/10/2026");
+  });
+
+  it.failing("shows an error when the API fails", async () => {
+    const user = userEvent.setup();
+    spyFetch.mockRejectedValueOnce(
+      new Response(`{"message":"An error occurred"}`),
+    );
+
+    render(<PaydayCalculator />);
+
+    const monthField = screen.getByTestId(PaydayFormTestIds.month);
+    const yearField = screen.getByTestId(PaydayFormTestIds.year);
+    const submitButton = screen.getByTestId(PaydayFormTestIds.submitButton);
+
+    await user.selectOptions(monthField, "1");
+    await user.clear(yearField);
+    await user.type(yearField, "2026");
+    await user.click(submitButton);
+
+    const error = screen.getByTestId(PaydayCalculatorTestIds.error);
+    expect(error).toBeVisible();
   });
 });

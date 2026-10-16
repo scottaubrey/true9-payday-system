@@ -3,6 +3,10 @@ import { ApiClient } from "../api-client";
 import { PaydayForm } from "../components/PaydayForm";
 import { PaydayResult } from "../components/PaydayResult";
 
+export const PaydayCalculatorTestIds = {
+  error: "PaydayCalculatorTestIds.error",
+};
+
 export const PaydayCalculator = () => {
   const [result, setResult] = useState<
     { payDate: Date; paymentDate: Date } | undefined
