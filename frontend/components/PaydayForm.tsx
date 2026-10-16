@@ -15,8 +15,8 @@ export const PaydayForm = ({
 }) => {
   const nowDateRef = useRef(new Date());
   const [formValues, setFormValues] = useState({
-    month: String(nowDateRef.current.getMonth() + 1),
-    year: String(nowDateRef.current.getFullYear()),
+    month: String(nowDateRef.current.getUTCMonth() + 1),
+    year: String(nowDateRef.current.getUTCFullYear()),
   });
 
   const onClickHandler = async () => {
