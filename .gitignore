@@ -10,3 +10,8 @@ frontend/public/
 # Playwright output
 test-results/
 playwright-report/
+
+# frontend build output
+public/index.html
+public/index-*.css
+public/index-*.js

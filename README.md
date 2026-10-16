@@ -57,10 +57,14 @@ Or run all checks with `mise check-frontend`
 
 ## End 2 End tests
 
-### Running the front dev server
+### Running the frontend dev server
 
 Install the JS dependencies with `bun install`, then the browser dependencies with `bun run playwright install`.
 
 Then run the test suite with `bun run playwright test`.
 
 Or you can use mise to do all the above, with `mise test-e2e`
+
+## Building the frontend
+
+The Frontend application is entirely statically buildable. You can build the output for deployment by using `bun build frontend/index.html --outdir=out`. You can also use `mise build-frontend` to build it into the local `public/` directory that is served up by the PHP dev application server. In other words - you can build it and run it as it would be in production.
