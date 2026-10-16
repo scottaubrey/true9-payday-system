@@ -47,7 +47,7 @@ describe("PaydayCalculator", () => {
     expect(paymentDateResult).toHaveTextContent("Monday, 26/10/2026");
   });
 
-  it.failing("shows an error when the API fails", async () => {
+  it("shows an error when the API fails", async () => {
     const user = userEvent.setup();
     spyFetch.mockRejectedValueOnce(
       new Response(`{"message":"An error occurred"}`),
