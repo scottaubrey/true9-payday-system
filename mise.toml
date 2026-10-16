@@ -19,7 +19,7 @@ run = "php vendor/bin/pest"
 depends = ["install-deps-backend"]
 
 [tasks.check-backend]
-depends = ["format", "lint", "analyse", "test"]
+depends = ["format-backend", "lint-backend", "analyse-backend", "test-backend"]
 
 [tasks.start-backend]
 run = "php -S localhost:8888 -t public/ app.php"
