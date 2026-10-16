@@ -19,11 +19,13 @@ mise install
 
 ### Running the backend dev server
 
-use `mise start-backend` to install dependencies and start the dev server
+use `mise start-backend` to install dependencies and start the dev server on http://localhost:8888/.
+
+You can test an api by hitting `http://localhost:8888/api/payday?month=10&year=2026`.
 
 ### Running pre-commit checks
 
-Or run all checks with `mise check`
+Or run all checks with `mise check-backend`
 
 ## Frontend
 
@@ -32,6 +34,8 @@ Or run all checks with `mise check`
 use `mise start-frontend` to install dependencies and start the dev server.
 
 NOTE: This will also run the PHP backend dev server.
+
+You can view the application by visiting `http://localhost:3000/`.
 
 ### Running pre-commit checks
 
