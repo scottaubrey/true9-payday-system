@@ -62,7 +62,7 @@ describe("PaydayCalculator", () => {
     expect(error).toBeVisible();
   });
 
-  it.failing("allow the error dialog to be closed", async () => {
+  it("allow the error dialog to be closed", async () => {
     const user = userEvent.setup();
     spyFetch.mockRejectedValueOnce(
       new Response(`{"message":"An error occurred"}`),

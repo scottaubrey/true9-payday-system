@@ -13,6 +13,9 @@ export const PaydayCalculator = () => {
     { payDate: Date; paymentDate: Date } | undefined
   >(undefined);
   const [error, setError] = useState(false);
+  const resetError = () => {
+    setError(false);
+  };
 
   const onSubmit = async (year: string, month: string) => {
     setError(false);
@@ -31,6 +34,18 @@ export const PaydayCalculator = () => {
       {error && (
         <dialog open data-testid={PaydayCalculatorTestIds.error}>
           <article>
+            <header>
+              <button
+                onClick={resetError}
+                type="button"
+                aria-label="Close"
+                rel="prev"
+                data-testid={PaydayCalculatorTestIds.closeErrorDialog}
+              ></button>
+              <p>
+                <strong>An error occurred.</strong>
+              </p>
+            </header>
             <p>Please review your form and try again.</p>
           </article>
         </dialog>
