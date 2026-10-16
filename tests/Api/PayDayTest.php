@@ -40,4 +40,9 @@ describe('PayDayApi', function () {
         ['2026', 'abc'],
         ['abc', '12'],
     ]);
+
+    it('returns a json content-type header', function () {
+        $response = makePayDayRequest('2026', '10');
+        expect($response->getHeaderLine('Content-Type'))->toBe('application/json');
+    });
 });
