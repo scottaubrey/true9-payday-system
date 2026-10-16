@@ -32,7 +32,13 @@ export const PaydayCalculator = () => {
       <PaydayForm onSubmit={onSubmit}></PaydayForm>
       {result && <PaydayResult {...result}></PaydayResult>}
       {error && (
-        <dialog open data-testid={PaydayCalculatorTestIds.error}>
+        // biome-ignore  lint/a11y/useKeyWithClickEvents: dialog closedby="any" already handles keyboard escape natively
+        <dialog
+          open
+          data-testid={PaydayCalculatorTestIds.error}
+          closedby="any"
+          onClick={resetError}
+        >
           <article>
             <header>
               <button
