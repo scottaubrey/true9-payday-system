@@ -78,13 +78,6 @@ export const ApiClient = {
         };
       }
 
-      if (!isValidPayDayView(data)) {
-        return {
-          success: false,
-          error: "Validation error",
-        };
-      }
-
       return {
         success: true,
         data: {
