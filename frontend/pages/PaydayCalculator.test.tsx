@@ -61,4 +61,24 @@ describe("PaydayCalculator", () => {
     const error = screen.getByTestId(PaydayCalculatorTestIds.error);
     expect(error).toBeVisible();
   });
+
+  it.failing("allow the error dialog to be closed", async () => {
+    const user = userEvent.setup();
+    spyFetch.mockRejectedValueOnce(
+      new Response(`{"message":"An error occurred"}`),
+    );
+
+    render(<PaydayCalculator />);
+
+    const submitButton = screen.getByTestId(PaydayFormTestIds.submitButton);
+    await user.click(submitButton);
+
+    const error = screen.getByTestId(PaydayCalculatorTestIds.error);
+    expect(error).toBeVisible();
+
+    await user.click(
+      screen.getByTestId(PaydayCalculatorTestIds.closeErrorDialog),
+    );
+    expect(error).not.toBeVisible();
+  });
 });

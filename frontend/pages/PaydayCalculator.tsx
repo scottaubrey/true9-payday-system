@@ -5,6 +5,7 @@ import { PaydayResult } from "../components/PaydayResult";
 
 export const PaydayCalculatorTestIds = {
   error: "PaydayCalculatorTestIds.error",
+  closeErrorDialog: "PaydayCalculatorTestIds.closeErrorDialog",
 };
 
 export const PaydayCalculator = () => {
