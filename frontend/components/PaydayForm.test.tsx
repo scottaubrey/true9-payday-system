@@ -18,6 +18,16 @@ describe("PaydayForm", () => {
     expect(yearField).toBeVisible();
   });
 
+  it.failing("Shows current month and year by default", () => {
+    render(<PaydayForm />);
+
+    const today = new Date();
+    const monthField = screen.getByTestId(PaydayFormTestIds.month);
+    const yearField = screen.getByTestId(PaydayFormTestIds.year);
+    expect(monthField).toHaveValue(String(today.getUTCMonth() + 1));
+    expect(yearField).toHaveValue(today.getUTCFullYear());
+  });
+
   it("Shows a submit button", () => {
     render(<PaydayForm />);
 
