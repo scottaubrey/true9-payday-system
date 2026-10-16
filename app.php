@@ -7,7 +7,12 @@ use Scottaubrey\True9PaydaySystem\Application;
 $publicDir = realpath(__DIR__ . '/public/');
 if ($publicDir) {
     $requestPath = realpath($publicDir . $_SERVER['REQUEST_URI']);
-    if ($requestPath && str_starts_with($requestPath, $publicDir) && file_exists($requestPath)) {
+    if (
+        $requestPath
+        && str_starts_with($requestPath, $publicDir)
+        && file_exists($requestPath)
+        && is_file($requestPath)
+    ) {
         return false;
     }
 }

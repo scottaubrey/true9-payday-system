@@ -22,7 +22,12 @@ class Application
     {
         $app = AppFactory::create();
         $app->get('/', static function (RequestInterface $_request, ResponseInterface $response) {
-            $response->getBody()->write('Hello world!');
+            $body = '<p>This is the True9 Payday system API server.</p><p><small>If you were expecting an application frontend, maybe you need to build the frontend first.</small></p>';
+            if (file_exists('public/index.html')) {
+                /** @var string $body */
+                $body = file_get_contents('public/index.html');
+            }
+            $response->getBody()->write($body);
             return $response;
         });
 
