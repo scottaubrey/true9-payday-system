@@ -55,13 +55,7 @@ describe("PaydayCalculator", () => {
 
     render(<PaydayCalculator />);
 
-    const monthField = screen.getByTestId(PaydayFormTestIds.month);
-    const yearField = screen.getByTestId(PaydayFormTestIds.year);
     const submitButton = screen.getByTestId(PaydayFormTestIds.submitButton);
-
-    await user.selectOptions(monthField, "1");
-    await user.clear(yearField);
-    await user.type(yearField, "2026");
     await user.click(submitButton);
 
     const error = screen.getByTestId(PaydayCalculatorTestIds.error);
