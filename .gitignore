@@ -6,3 +6,7 @@ node_modules/
 .DS_Store
 
 frontend/public/
+
+# Playwright output
+test-results/
+playwright-report/

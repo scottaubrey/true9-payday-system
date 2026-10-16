@@ -47,3 +47,15 @@ Setup basic structure:
 - setup mise commands for `mise check-frontend`, `mise test-frontend` and `mise start-frontend`
 - create a basic HTML page, index module to load react and Pico CSS, App module to output basic page structure
 - For the developer experience - create `server.ts` that would use HMR to create a fast dev experience, and proxy to a running PHP server.
+
+## E2E testing
+
+I decided to go with playwright as it is a well supported, feature rich testing framework for end to end testing in a real browser suite.
+
+This will run on BunJS, so only required the extra dependencies.
+
+Setup:
+
+- run `bun add @playwright/test -D`
+- create `playwright.config.ts` from config, create `e2e` dir
+- setup mise commands

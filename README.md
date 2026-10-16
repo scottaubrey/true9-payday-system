@@ -54,3 +54,13 @@ Check source code formatting with `biome format`, check for source code issues w
 Run test suites with `bun test frontend/`.
 
 Or run all checks with `mise check-frontend`
+
+## End 2 End tests
+
+### Running the front dev server
+
+Install the JS dependencies with `bun install`, then the browser dependencies with `bun run playwright install`.
+
+Then run the test suite with `bun run playwright test`.
+
+Or you can use mise to do all the above, with `mise test-e2e`
