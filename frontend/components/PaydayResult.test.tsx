@@ -19,7 +19,7 @@ describe("PaydayResult", () => {
     ).toHaveTextContent("Monday, 26/10/2026");
   });
 
-  it.failing("shows a pay and payment date with leading zero padding", () => {
+  it("shows a pay and payment date with leading zero padding", () => {
     render(
       <PaydayResult
         payDate={new Date("2026-01-09")}

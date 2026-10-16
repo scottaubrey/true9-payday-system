@@ -14,7 +14,7 @@ const WEEKDAYS = [
 ];
 
 const formatDate = (date: Date) => {
-  return `${WEEKDAYS[date.getUTCDay()]}, ${date.getUTCDate()}/${String(date.getUTCMonth() + 1)}/${date.getUTCFullYear()}`;
+  return `${WEEKDAYS[date.getUTCDay()]}, ${String(date.getUTCDate()).padStart(2, "0")}/${String(date.getUTCMonth() + 1).padStart(2, "0")}/${date.getUTCFullYear()}`;
 };
 
 export const PaydayResult = ({
