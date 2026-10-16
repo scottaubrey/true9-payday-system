@@ -62,7 +62,7 @@ depends = ["install-deps-frontend"]
 
 [tasks.test-e2e]
 run = "bun run playwright test"
-depends = ["install-e2e"]
+depends = ["install-e2e", "install-deps-backend"]
 
 [tasks.check-e2e]
 depends = ["format-frontend", "lint-frontend", "type-check-frontend", "analyse-frontend", "test-e2e"]
