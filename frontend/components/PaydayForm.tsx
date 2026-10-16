@@ -52,7 +52,7 @@ export const PaydayForm = ({
       <input
         data-testid={PaydayFormTestIds.year}
         type="number"
-        min={nowDateRef.current.getFullYear()}
+        min="1900"
         max="9999"
         name="year"
         value={formValues.year}
