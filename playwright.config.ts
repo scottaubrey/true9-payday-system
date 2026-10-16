@@ -23,8 +23,9 @@ export default defineConfig({
   webServer: {
     command: 'mise start-frontend',
     reuseExistingServer: !process.env.CI,
+    timeout: 180_000,
     wait: {
-      stdout: /Frontend server is running/,
+      stdout: /All servers ready/,
     }
   },
 });
