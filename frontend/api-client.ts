@@ -45,47 +45,54 @@ export const ApiClient = {
     url.searchParams.set("year", year);
     url.searchParams.set("month", month);
 
-    const response = await fetch(url);
-
-    let data: PayDayViewData;
     try {
-      const rawData = await response.json();
+      const response = await fetch(url);
 
-      if (response.status !== 200) {
-        return {
-          success: false,
-          error: "message" in rawData ? rawData.message : response.statusText,
-        };
-      }
+      let data: PayDayViewData;
+      try {
+        const rawData = await response.json();
 
-      if (!isValidPayDayView(rawData)) {
+        if (response.status !== 200) {
+          return {
+            success: false,
+            error: "message" in rawData ? rawData.message : response.statusText,
+          };
+        }
+
+        if (!isValidPayDayView(rawData)) {
+          return {
+            success: false,
+            error: "Validation error",
+          };
+        }
+
+        data = rawData;
+      } catch (_error: unknown) {
         return {
           success: false,
           error: "Validation error",
         };
       }
 
-      data = rawData;
+      if (!isValidPayDayView(data)) {
+        return {
+          success: false,
+          error: "Validation error",
+        };
+      }
+
+      return {
+        success: true,
+        data: {
+          payDate: new Date(data.payDate),
+          paymentDate: new Date(data.paymentDate),
+        },
+      };
     } catch (_error: unknown) {
       return {
         success: false,
-        error: "Validation error",
+        error: "Network error",
       };
     }
-
-    if (!isValidPayDayView(data)) {
-      return {
-        success: false,
-        error: "Validation error",
-      };
-    }
-
-    return {
-      success: true,
-      data: {
-        payDate: new Date(data.payDate),
-        paymentDate: new Date(data.paymentDate),
-      },
-    };
   },
 };
