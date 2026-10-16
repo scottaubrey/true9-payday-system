@@ -8,7 +8,7 @@ export const PaydayResult = ({
   paymentDate,
 }: {
   payDate: Date;
-  paymentDate?: Date;
+  paymentDate: Date;
 }) => (
   <>
     <dl>
@@ -23,7 +23,7 @@ export const PaydayResult = ({
       </dd>
       <dt>Payment Date</dt>
       <dd data-testid={PaydayResultTestIds.paymentDate}>
-        {paymentDate?.toLocaleDateString("en-GB", {
+        {paymentDate.toLocaleDateString("en-GB", {
           weekday: "long",
           day: "numeric",
           month: "2-digit",
