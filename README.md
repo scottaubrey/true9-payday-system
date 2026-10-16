@@ -15,23 +15,13 @@ mise install
 
 (warning: PHP might be compiled from source. You will require build tools and libraries, see [here](https://github.com/version-fox/vfox-php#prerequirements))
 
-Install the dependencies use `composer install`, or `mise build`
-
 ## Backend
 
 ### Running the backend dev server
 
-run a PHP dev server using `php -S localhost:8888 -t public/ app.php`
-
-or
-
-use `mise start` to install dependencies and start the dev server
+use `mise start-backend` to install dependencies and start the dev server
 
 ### Running pre-commit checks
-
-Check source code formatting with `mago format`, check for source code issues with `mago lint`, and do deeper static analysis with `mago analyze`.
-
-Run test suites with `./vendor/bin/pest`.
 
 Or run all checks with `mise check`
 
@@ -39,31 +29,17 @@ Or run all checks with `mise check`
 
 ### Running the front dev server
 
-Run the Frontend dev server using `bun run frontend/server.ts`
-
-or
-
 use `mise start-frontend` to install dependencies and start the dev server.
 
 NOTE: This will also run the PHP backend dev server.
 
 ### Running pre-commit checks
 
-Check source code formatting with `biome format`, check for source code issues with `biome lint`, and do deeper static analysis with `biome check`.
-
-Run test suites with `bun test frontend/`.
-
 Or run all checks with `mise check-frontend`
 
-## End 2 End tests
+## End to End tests
 
-### Running the frontend dev server
-
-Install the JS dependencies with `bun install`, then the browser dependencies with `bun run playwright install`.
-
-Then run the test suite with `bun run playwright test`.
-
-Or you can use mise to do all the above, with `mise test-e2e`
+Run a dev server and playwright end to end tests with `mise test-e2e`
 
 ## Building the frontend
 
