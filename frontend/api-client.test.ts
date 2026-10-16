@@ -38,7 +38,7 @@ describe("ApiClient", () => {
       expect(lastFetchCallUrl.searchParams.get("month")).toEqual("10");
     });
 
-    it.failing("passes and accept header of application/json", async () => {
+    it("passes and accept header of application/json", async () => {
       spyFetch.mockResolvedValueOnce(
         new Response(`{"payDate":"2026-10-30","paymentDate":"2026-10-26"}`),
       );

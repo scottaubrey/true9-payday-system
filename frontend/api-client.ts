@@ -46,7 +46,11 @@ export const ApiClient = {
     url.searchParams.set("month", month);
 
     try {
-      const response = await fetch(url);
+      const response = await fetch(url, {
+        headers: {
+          Accept: "application/json",
+        },
+      });
 
       let data: PayDayViewData;
       try {
