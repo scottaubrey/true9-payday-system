@@ -49,9 +49,7 @@ describe("PaydayCalculator", () => {
 
   it("shows an error when the API fails", async () => {
     const user = userEvent.setup();
-    spyFetch.mockRejectedValueOnce(
-      new Response(`{"message":"An error occurred"}`),
-    );
+    spyFetch.mockRejectedValueOnce(new TypeError("fetch failed"));
 
     render(<PaydayCalculator />);
 
@@ -64,9 +62,7 @@ describe("PaydayCalculator", () => {
 
   it("allow the error dialog to be closed", async () => {
     const user = userEvent.setup();
-    spyFetch.mockRejectedValueOnce(
-      new Response(`{"message":"An error occurred"}`),
-    );
+    spyFetch.mockRejectedValueOnce(new TypeError("fetch failed"));
 
     render(<PaydayCalculator />);
 

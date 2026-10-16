@@ -115,7 +115,7 @@ describe("ApiClient", () => {
     });
 
     it("returns a error object when the promise is rejected", async () => {
-      spyFetch.mockRejectedValueOnce("");
+      spyFetch.mockRejectedValueOnce(new TypeError("fetch failed"));
 
       const response = await ApiClient.payday("2026", "10");
 
