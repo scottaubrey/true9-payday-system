@@ -15,4 +15,4 @@ spec:
               service:
                 name: true9-payday-web
                 port:
-                  number: 3000
+                  number: 8888
