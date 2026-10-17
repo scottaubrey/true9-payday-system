@@ -1,8 +1,9 @@
 [tools]
-php = "8.5.11"
 mago = "1.56.3"
 bun = "1.4.3"
 biome = "2.5.15"
+"http:php" = { version = "8.5.8", url = 'https://dl.static-php.dev/static-php-cli/bulk/php-{{ version }}-cli-{{ os() }}-{{ arch(x64="x86_64",arm64="aarch64") }}.tar.gz' }
+"github:composer/composer" = "2.10.3"
 
 [tasks.format-backend]
 run = "mago format"
