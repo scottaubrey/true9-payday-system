@@ -20,31 +20,31 @@ jobs:
   check-backend:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@latest
+      - uses: actions/checkout@v7
       - uses: jdx/mise-action@v4
       - run: mise format-backend lint-backend analyse-backend
   check-frontend:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@latest
+      - uses: actions/checkout@v7
       - uses: jdx/mise-action@v4
       - run: mise format-frontend lint-frontend type-check-frontend analyse-frontend
   test-backend:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@latest
+      - uses: actions/checkout@v7
       - uses: jdx/mise-action@v4
       - run: mise test-backend
   test-frontend:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@latest
+      - uses: actions/checkout@v7
       - uses: jdx/mise-action@v4
       - run: mise test-frontend
   test-e2e:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@latest
+      - uses: actions/checkout@v7
       - uses: jdx/mise-action@v4
       - run: mise test-e2e
   build-and-push:
@@ -64,7 +64,7 @@ jobs:
       id-token: write
       packages: write
     steps:
-      - uses: actions/checkout@latest
+      - uses: actions/checkout@v7
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
