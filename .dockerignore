@@ -1,0 +1,10 @@
+# dependencies
+vendor/
+node_modules/
+
+# Finder (MacOS) folder config
+.DS_Store
+
+# Playwright output
+test-results/
+playwright-report/
