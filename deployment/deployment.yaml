@@ -18,7 +18,7 @@ spec:
             - pod-template-hash
       containers:
         - name: web
-          image: ghcr.io/scottaubrey/true9-payday-system:20261017111801.0.0-gccf791f-39028159496-1 # {"$imagepolicy": "true9:true9-payday-system"}
+          image: ghcr.io/scottaubrey/true9-payday-system:20261017181345.0.0-gf16506d-39057165342-1 # {"$imagepolicy": "true9:true9-payday-system"}
           ports:
             - containerPort: 8888
               protocol: TCP
