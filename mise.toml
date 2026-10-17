@@ -5,15 +5,18 @@ biome = "2.5.15"
 "http:php" = { version = "8.5.8", url = 'https://dl.static-php.dev/static-php-cli/bulk/php-{{ version }}-cli-{{ os() }}-{{ arch(x64="x86_64",arm64="aarch64") }}.tar.gz' }
 "github:composer/composer" = "2.10.3"
 
-[tasks.format-backend]
-run = "mago format"
-[tasks.lint-backend]
-run = "mago lint"
-[tasks.analyse-backend]
-run = "mago analyze"
-
 [tasks.install-deps-backend]
 run = "composer install"
+
+[tasks.format-backend]
+run = "mago format"
+depends = ["install-deps-backend"]
+[tasks.lint-backend]
+run = "mago lint"
+depends = ["install-deps-backend"]
+[tasks.analyse-backend]
+run = "mago analyze"
+depends = ["install-deps-backend"]
 
 [tasks.test-backend]
 run = "php vendor/bin/pest"
