@@ -39,7 +39,7 @@ depends = ["install-deps-frontend"]
 run = "biome lint"
 depends = ["install-deps-frontend"]
 [tasks.type-check-frontend]
-run = ["bun check frontend/"]
+run = ["bun check"]
 depends = ["install-deps-frontend"]
 [tasks.analyse-frontend]
 run = ["biome check"]
