@@ -61,7 +61,10 @@ run = "bun build frontend/index.html --outdir=public/"
 
 
 [tasks.install-e2e]
-run = "bun run playwright install"
+run = [
+    "bun run playwright install-deps",
+    "bun run playwright install"
+]
 depends = ["install-deps-frontend"]
 
 [tasks.test-e2e]
