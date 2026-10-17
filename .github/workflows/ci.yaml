@@ -84,5 +84,6 @@ jobs:
           platforms: linux/amd64,linux/arm64
           target: production
           tags: |
+            ${{ env.IMAGE_REPO }}:latest
             ${{ env.IMAGE_REPO }}:${{ github.sha }}
             ${{ env.IMAGE_REPO }}:${{ needs.generate-version.outputs.trunkver }}
