@@ -22,13 +22,13 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - uses: jdx/mise-action@v4
-      - run: mise format-backend lint-backend analyse-backend
+      - run: "mise format-backend ::: lint-backend ::: analyse-backend"
   check-frontend:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
       - uses: jdx/mise-action@v4
-      - run: mise format-frontend lint-frontend type-check-frontend analyse-frontend
+      - run: "mise format-frontend ::: lint-frontend ::: type-check-frontend ::: analyse-frontend"
   test-backend:
     runs-on: ubuntu-latest
     steps:
