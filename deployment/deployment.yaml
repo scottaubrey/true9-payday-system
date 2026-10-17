@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: true9-payday-web
+spec:
+  replicas: 2
+  template:
+    spec:
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: oci.oraclecloud.com/fault-domain
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              kubernetes.io/component: web
+              kubernetes.io/name: true9-payday
+          matchLabelKeys:
+            - pod-template-hash
+      containers:
+        - name: web
+          image: docker pull ghcr.io/scottaubrey/true9-payday-system:20261017111801.0.0-gccf791f-39028159496-1
+          ports:
+            - containerPort: 8888
+              protocol: TCP
+              name: http
