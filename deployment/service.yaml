@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: true9-payday-web
+spec:
+  ports:
+    - port: 8888
