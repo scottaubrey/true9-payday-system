@@ -1,0 +1,57 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImageRepository
+metadata:
+  name: true9-payday-system
+spec:
+  interval: 5m
+  image: ghcr.io/scottaubrey/true9-payday-system
+---
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImagePolicy
+metadata:
+  name: true9-payday-system
+spec:
+  imageRepositoryRef:
+    name: true9-payday-system
+  filterTags:
+    pattern: '^(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+).*'
+    extract: "$major.$minor.$patch"
+  policy:
+    semver:
+      range: "*"
+---
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImageUpdateAutomation
+metadata:
+  name: true9-payday-system
+spec:
+  interval: 5m
+  sourceRef:
+    kind: GitRepository
+    name: true9-payday-system
+    namespace: flux-system
+  update:
+    strategy: Setters
+    path: ./deployment
+  git:
+    commit:
+      author:
+        name: Fluxbot
+        email: flux@aubrey.org.uk
+      messageTemplate: |
+        deploy({{ .AutomationObject }}): Automatic deploy
+
+        Files:
+        {{ range $filename, $_ := .Changed.FileChanges -}}
+        - {{ $filename }}
+        {{ end -}}
+
+        Objects:
+        {{ range $resource, $changes := .Changed.Objects -}}
+        - {{ $resource.Kind }} {{ $resource.Namespace }}/{{ $resource.Name }}
+          Changes:
+        {{- range $_, $change := $changes }}
+          - {{ $change.Setter }}: {{ $change.OldValue }} -> {{ $change.NewValue }}
+        {{ end -}}
+        {{ end -}}
