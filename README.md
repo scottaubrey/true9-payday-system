@@ -79,4 +79,4 @@ The Frontend application is entirely statically buildable. You can build the out
 
 ## Deployment
 
-There is an example Kubernetes deployment in `deployments/`. This deploys the application to https://payday.aubrey.org.uk/
+There is an example Kubernetes deployment in `deployment/`. This deploys the application to https://payday.aubrey.org.uk/
