@@ -76,3 +76,7 @@ docker run --publish 8888:8888 -it ghcr.io/scottaubrey/true9-payday-system:lates
 ## Building the frontend
 
 The Frontend application is entirely statically buildable. You can build the output for deployment by using `bun build frontend/index.html --outdir=out`. You can also use `mise build-frontend` to build it into the local `public/` directory that is served up by the PHP dev application server. In other words - you can build it and run it as it would be in production.
+
+## Deployment
+
+There is an example Kubernetes deployment in `deployments/`. This deploys the application to https://payday.aubrey.org.uk/
