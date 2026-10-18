@@ -6,7 +6,9 @@ use PHPUnit\Framework\Assert;
 
 function fails(callable $closure): Closure
 {
-    return function (...$args) use ($closure) {
+    return function () use ($closure) {
+        $args = func_get_args();
+
         try {
             $closure(...$args);
         } catch (Throwable $e) {
