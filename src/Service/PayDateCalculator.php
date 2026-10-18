@@ -25,7 +25,13 @@ class PayDateCalculator
 
     private function isPublicHoliday(DateTimeImmutable $date): bool
     {
-        return $date->format('Y-m-d') === '2027-08-30';
+        $publicHolidayCalculator = \Yasumi\Yasumi::create(
+            'UnitedKingdom\England',
+            locale: 'en_GB',
+            year: intval($date->format('Y')),
+        );
+
+        return $publicHolidayCalculator->isHoliday($date);
     }
 
     public function calculateFor(string $year, string $month): PayDate
@@ -54,17 +60,17 @@ class PayDateCalculator
         return PayDate::fromString($payDate->format('Y-m-d'));
     }
 
-    private function isFriday(DateTimeImmutable $date): bool
-    {
-        return $date->format('N') === '5';
-    }
-
     public function calculatePaymentDateFor(PayDate $payDate): PaymentDate
     {
-        $dateTimeValue = $payDate->toDateTimeImmutable();
-        $intervalIncludingPotentialWeekends = $this->isFriday($dateTimeValue) ? 'P4D' : 'P6D';
-        return PaymentDate::fromString($dateTimeValue->sub(
-            new DateInterval($intervalIncludingPotentialWeekends),
-        )->format('Y-m-d'));
+        $potentialPaymentDate = $payDate->toDateTimeImmutable();
+        $workingDays = 0;
+        do {
+            $potentialPaymentDate = $potentialPaymentDate->sub(new DateInterval('P1D'));
+            if ($this->isWeekend($potentialPaymentDate) || $this->isPublicHoliday($potentialPaymentDate)) {
+                continue;
+            }
+            $workingDays++;
+        } while ($workingDays < 4);
+        return PaymentDate::fromString($potentialPaymentDate->format('Y-m-d'));
     }
 }
