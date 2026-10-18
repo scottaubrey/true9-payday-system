@@ -35,7 +35,7 @@ describe('Service\PayDateCalculator', function () {
 
             $payDate = $payDateCalculator->calculateFor('2027', '08');
 
-            expect($payDate->toString())->toBe('2026-08-27');
+            expect($payDate->toString())->toBe('2027-08-27');
         }));
     });
 
