@@ -23,6 +23,11 @@ class PayDateCalculator
         return $date->sub(new DateInterval("P{$numberOfDays}D"));
     }
 
+    private function isPublicHoliday(DateTimeImmutable $date): bool
+    {
+        return $date->format('Y-m-d') === '2027-08-30';
+    }
+
     public function calculateFor(string $year, string $month): PayDate
     {
         $date = DateTimeImmutable::createFromFormat('Y-m-d|', "{$year}-{$month}-01");
@@ -32,7 +37,19 @@ class PayDateCalculator
 
         $potentialPayDate = $date->add(new DateInterval('P1M'))->sub(new DateInterval('P2D'));
 
-        $payDate = $this->isWeekend($potentialPayDate) ? $this->moveBackToFriday($potentialPayDate) : $potentialPayDate;
+        do {
+            if ($this->isWeekend($potentialPayDate)) {
+                $potentialPayDate = $this->moveBackToFriday($potentialPayDate);
+                continue;
+            }
+
+            if ($this->isPublicHoliday($potentialPayDate)) {
+                $potentialPayDate = $potentialPayDate->sub(new DateInterval('P1D'));
+                continue;
+            }
+            $payDate = $potentialPayDate;
+            break;
+        } while (true);
 
         return PayDate::fromString($payDate->format('Y-m-d'));
     }

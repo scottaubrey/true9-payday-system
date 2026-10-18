@@ -30,13 +30,13 @@ describe('Service\PayDateCalculator', function () {
                 ->toThrow('Year (2026) and Month (13) are not valid.');
         });
 
-        it('returns a pay date that is the prior Friday if the second-to-last day is a bank holiday', fails(function () {
+        it('returns a pay date that is the prior Friday if the second-to-last day is a bank holiday', function () {
             $payDateCalculator = new PayDateCalculator();
 
             $payDate = $payDateCalculator->calculateFor('2027', '08');
 
             expect($payDate->toString())->toBe('2027-08-27');
-        }));
+        });
     });
 
     describe('calculatePaymentDateFor', function () {
