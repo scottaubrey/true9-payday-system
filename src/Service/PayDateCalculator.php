@@ -14,28 +14,6 @@ use Yasumi\Yasumi;
 
 class PayDateCalculator
 {
-    private function isWeekend(DateTimeImmutable $date): bool
-    {
-        return $date->format('N') > 5;
-    }
-
-    private function moveBackToFriday(DateTimeImmutable $date): DateTimeImmutable
-    {
-        $numberOfDays = intval($date->format('N')) - 5;
-        return $date->sub(new DateInterval("P{$numberOfDays}D"));
-    }
-
-    private function isPublicHoliday(DateTimeImmutable $date): bool
-    {
-        $publicHolidayCalculator = \Yasumi\Yasumi::create(
-            'UnitedKingdom\England',
-            locale: 'en_GB',
-            year: intval($date->format('Y')),
-        );
-
-        return $publicHolidayCalculator->isHoliday($date);
-    }
-
     public function calculateFor(string $year, string $month): PayDate
     {
         $date = DateTimeImmutable::createFromFormat('Y-m-d|', "{$year}-{$month}-01");
@@ -45,21 +23,14 @@ class PayDateCalculator
 
         $potentialPayDate = $date->add(new DateInterval('P1M'))->sub(new DateInterval('P2D'));
 
+        $publicHolidayCalculator = $this->getPublicHolidayCalculatorFor(intval($potentialPayDate->format('Y')));
+
         do {
-            if ($this->isWeekend($potentialPayDate)) {
-                $potentialPayDate = $this->moveBackToFriday($potentialPayDate);
-                continue;
+            if ($publicHolidayCalculator->isWorkingDay($potentialPayDate)) {
+                return PayDate::fromString($potentialPayDate->format('Y-m-d'));
             }
-
-            if ($this->isPublicHoliday($potentialPayDate)) {
-                $potentialPayDate = $potentialPayDate->sub(new DateInterval('P1D'));
-                continue;
-            }
-            $payDate = $potentialPayDate;
-            break;
+            $potentialPayDate = $potentialPayDate->sub(new DateInterval('P1D'));
         } while (true);
-
-        return PayDate::fromString($payDate->format('Y-m-d'));
     }
 
     private function getPublicHolidayCalculatorFor(int $year): ProviderInterface
