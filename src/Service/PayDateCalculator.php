@@ -9,6 +9,8 @@ use DateTimeImmutable;
 use DomainException;
 use Scottaubrey\True9PaydaySystem\Model\PayDate;
 use Scottaubrey\True9PaydaySystem\Model\PaymentDate;
+use Yasumi\ProviderInterface;
+use Yasumi\Yasumi;
 
 class PayDateCalculator
 {
@@ -60,16 +62,23 @@ class PayDateCalculator
         return PayDate::fromString($payDate->format('Y-m-d'));
     }
 
+    private function getPublicHolidayCalculatorFor(int $year): ProviderInterface
+    {
+        return Yasumi::create('UnitedKingdom\England', locale: 'en_GB', year: $year);
+    }
+
     public function calculatePaymentDateFor(PayDate $payDate): PaymentDate
     {
+        $publicHolidayCalculator = $this->getPublicHolidayCalculatorFor(intval(
+            $payDate->toDateTimeImmutable()->format('Y'),
+        ));
         $potentialPaymentDate = $payDate->toDateTimeImmutable();
         $workingDays = 0;
         do {
             $potentialPaymentDate = $potentialPaymentDate->sub(new DateInterval('P1D'));
-            if ($this->isWeekend($potentialPaymentDate) || $this->isPublicHoliday($potentialPaymentDate)) {
-                continue;
+            if ($publicHolidayCalculator->isWorkingDay($potentialPaymentDate)) {
+                $workingDays++;
             }
-            $workingDays++;
         } while ($workingDays < 4);
         return PaymentDate::fromString($potentialPaymentDate->format('Y-m-d'));
     }
