@@ -28,9 +28,9 @@ describe('PayDayApi', function () {
     });
 
     it('returns a payment date that is does not count weekend days', function () {
-        $payDayView = makePayDayRequestAndDecode('2026', '12');
+        $payDayView = makePayDayRequestAndDecode('2028', '11');
 
-        expect($payDayView?->paymentDate?->toString())->toEqual('2026-12-24');
+        expect($payDayView?->paymentDate?->toString())->toEqual('2028-11-23');
     });
 
     it('returns an error with invalid dates', function (string $year, string $month) {
