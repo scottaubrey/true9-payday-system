@@ -59,3 +59,17 @@ Setup:
 - run `bun add @playwright/test -D`
 - create `playwright.config.ts` from config, create `e2e` dir
 - setup mise commands
+
+## CI/CD
+
+After getting to a fairly usable state, I started looking to deployment. Firstly - a deployment artifact. I chose to create a docker image as an output. This will combine the PHP application with the client-side build output of the bun frontend.
+
+Next, an automated builder to enforce checks and create and publish build artifact ready for deployment. I chose github actions, as this is easy to use, free for public repos and have the github container repository integration that meant I don't need to deal with any credentials. This runs on every push to main to support a trunk-based development workflow.
+
+Final step is continuous deployment. I reused existing infrastructure I have (a private kubernetes cluster with Flux CD). I published the deployment configuration in `deployment/` and imported this into my cluster. I then used my cloudflare integrated ingress controller to publish this at [payday.aubrey.org.uk](https://payday.aubrey.org.uk) via cloudflare tunnels.
+
+The combination works to:
+
+1. Run all checks, tests, frontend, backend and playwright test, in parallel.
+2. build a docker image and publish this to `ghcr.io/scottaubrey/true9-payday-system`
+3. detect the image push and deploy to the cluster, exposed via cloudflare tunnel to [payday.aubrey.org.uk](https://payday.aubrey.org.uk)
