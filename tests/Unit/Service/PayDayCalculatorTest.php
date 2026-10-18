@@ -56,6 +56,13 @@ describe('Service\PayDateCalculator', function () {
             expect($payDate->toString())->toBe('2026-09-23');
         });
 
-        todo('returns a payment date taking into account bank holidays before pay day');
+        it('returns a payment date taking into account bank holidays before pay day', fails(function () {
+            $payDateCalculator = new PayDateCalculator();
+
+            $payday = $payDateCalculator->calculateFor('2035', '03');
+            $paymentDate = $payDateCalculator->calculatePaymentDateFor($payday);
+
+            expect($paymentDate->toString())->toBe('2035-03-22');
+        }));
     });
 });
