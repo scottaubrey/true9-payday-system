@@ -1,0 +1,36 @@
+Technical Test
+New payroll system for a fictional company
+Last Updated October 2025
+This short programming exercise is
+designed to gauge your knowledge
+and approach to problem-solving.
+There are many valid ways to complete the test; there’s no single
+‘right’ answer.
+Thank you for taking the time to complete it. If you have any
+questions or need clarification, don’t hesitate to contact us.
+Technical Test
+Our fictional company requires a
+new payroll system.
+Your task is to write the functionality that determines the dates
+employee’s salaries are to be paid.
+Payday is the second-to-last day of the month. If this date falls on
+a weekend, then payday is the Friday before the weekend.
+It takes four working days for the employee to receive their salary
+after payment has been sent.
+Your task
+Create an API endpoint that accepts a year and a month and returns the
+employee’s payday and the day we have to make payment.
+Create a frontend that utilises this API endpoint.
+Create tests to verify the functionality of the API and Frontend.
+Provide a reproducible development environment for us to run your code
+and tests in.
+Create a readme documenting how we run your code and tests.
+Hints
+Feel free to use any frameworks or libraries you want, and there are
+no extra points for reinventing the wheel.
+The description is deliberately a little vague; don’t worry about
+guessing precisely what we mean; we want to see how you
+approach the problem.
+Salts Mill, Victoria Road, Saltaire, West Yorkshire BD18 3LA
+0330 043 1989 / hello@true9.co.uk / true9.co.uk
+True9 Limited is a limited company registered in England & Wales. Company no.9270250. VAT No.272893172

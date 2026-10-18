@@ -1,4 +1,4 @@
-# Initial Commit
+## Initial Commit
 
 Create basic scaffolding for a project. Copy spec PDF, create a README (part of spec)
 
@@ -73,3 +73,11 @@ The combination works to:
 1. Run all checks, tests, frontend, backend and playwright test, in parallel.
 2. build a docker image and publish this to `ghcr.io/scottaubrey/true9-payday-system`
 3. detect the image push and deploy to the cluster, exposed via cloudflare tunnel to [payday.aubrey.org.uk](https://payday.aubrey.org.uk)
+
+## Development process
+
+I have adopted many of the practices that originated in the XP community, in particular Test-driven development, where a test is created before working code to express a small aspect of behaviour I intend to see, then an implementation is written, then I look for refactor opportunities, leaning on the tests to ensure external behaviour doesn't change (red/green/refactor loop). I also adopt the continuous integration rule of never heaving an unbuildable mainline, and a micro-commit style, where each of these steps in the red/green/refactor loop is committed. All these practices are held together by being able to mark a test as expected to fail, and so there is a small helper function for pest to expect more than just expectation failures to faciliate this style.
+
+I used the outside-in (London-style) TDD approach, starting at the API boundary, finding collaborators as I went. I built the UI in a inside-out approach (Detroit-style), starting with components and building out of the UI and API client as needed.
+
+After final reviews, I decided to expand my definition of working days from purely weekdays to incorporate public holidays in the UK. I used and integrated library to do this, and after reviewing a few decided on `azuyalabs/yasumi` as a purely-calculation based library. Again, adopting a red/green/refactor loop to write the expected new behaviours, then adopt the library without changing behaviour. I added new tests to cover expected functionality and moved to the new library through red/green/refactor process.
