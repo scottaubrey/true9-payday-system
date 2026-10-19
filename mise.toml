@@ -53,7 +53,7 @@ depends = ["install-deps-frontend"]
 depends = ["format-frontend", "lint-frontend", "type-check-frontend", "analyse-frontend", "test-frontend"]
 
 [tasks.start-frontend]
-run = "bun run --check frontend/server.ts"
+run = "bun run --bun --check frontend/server.ts"
 depends = ["install-deps-frontend"]
 
 [tasks.build-frontend]
@@ -62,13 +62,13 @@ run = "bun build frontend/index.html --outdir=public/"
 
 [tasks.install-e2e]
 run = [
-    "bun run playwright install-deps",
-    "bun run playwright install"
+    "bun run --bun playwright install-deps",
+    "bun run --bun playwright install"
 ]
 depends = ["install-deps-frontend"]
 
 [tasks.test-e2e]
-run = "bun run playwright test"
+run = "bun run --bun playwright test"
 depends = ["install-e2e", "install-deps-backend"]
 
 [tasks.check-e2e]
