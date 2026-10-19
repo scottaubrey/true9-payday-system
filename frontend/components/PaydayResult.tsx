@@ -1,5 +1,3 @@
-import "./PaydayResult.css";
-
 export const PaydayResultTestIds = {
   payDate: "PaydayResult.payDate",
   paymentDate: "PaydayResult.paymentDate",
@@ -27,7 +25,7 @@ export const PaydayResult = ({
   paymentDate: Date;
 }) => (
   <>
-    <dl className="resultList">
+    <dl>
       <dt>Pay Date</dt>
       <dd data-testid={PaydayResultTestIds.payDate}>{formatDate(payDate)}</dd>
       <dt>Payment Date</dt>
