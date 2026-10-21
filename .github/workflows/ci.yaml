@@ -10,6 +10,7 @@ on:
 
 env:
   IMAGE_REPO: ghcr.io/scottaubrey/true9-payday-system
+  APT_DEPS: build-essential autoconf bison re2c pkg-config libxml2-dev libonig-dev libicu-dev libssl-dev libsqlite3-dev libcurl4-openssl-dev libpng-dev libreadline-dev
 
 jobs:
   generate-version:
@@ -24,30 +25,35 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+      - run: sudo apt-get -y install ${{ env.APT_DEPS }}
       - uses: jdx/mise-action@v4
       - run: "mise format-backend ::: lint-backend ::: analyse-backend"
   check-frontend:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+      - run: sudo apt-get -y install ${{ env.APT_DEPS }}
       - uses: jdx/mise-action@v4
       - run: "mise format-frontend ::: lint-frontend ::: type-check-frontend ::: analyse-frontend"
   test-backend:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+      - run: sudo apt-get -y install ${{ env.APT_DEPS }}
       - uses: jdx/mise-action@v4
       - run: mise test-backend
   test-frontend:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+      - run: sudo apt-get -y install ${{ env.APT_DEPS }}
       - uses: jdx/mise-action@v4
       - run: mise test-frontend
   test-e2e:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+      - run: sudo apt-get -y install ${{ env.APT_DEPS }}
       - uses: jdx/mise-action@v4
       - run: mise test-e2e
   build-and-push:
