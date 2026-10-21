@@ -14,7 +14,7 @@ env:
 
 jobs:
   generate-version:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     outputs:
       trunkver: ${{ steps.trunkver.outputs.trunkver }}
     steps:
@@ -22,35 +22,35 @@ jobs:
         id: trunkver
         uses: crftd-tech/trunkver@main
   check-backend:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@v7
       - run: sudo apt-get -y install ${{ env.APT_DEPS }}
       - uses: jdx/mise-action@v4
       - run: "mise format-backend ::: lint-backend ::: analyse-backend"
   check-frontend:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@v7
       - run: sudo apt-get -y install ${{ env.APT_DEPS }}
       - uses: jdx/mise-action@v4
       - run: "mise format-frontend ::: lint-frontend ::: type-check-frontend ::: analyse-frontend"
   test-backend:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@v7
       - run: sudo apt-get -y install ${{ env.APT_DEPS }}
       - uses: jdx/mise-action@v4
       - run: mise test-backend
   test-frontend:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@v7
       - run: sudo apt-get -y install ${{ env.APT_DEPS }}
       - uses: jdx/mise-action@v4
       - run: mise test-frontend
   test-e2e:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@v7
       - run: sudo apt-get -y install ${{ env.APT_DEPS }}
@@ -66,7 +66,7 @@ jobs:
         test-frontend,
         test-e2e,
       ]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     if: github.ref == 'refs/heads/main'
     permissions:
       contents: read
