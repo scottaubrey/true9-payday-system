@@ -1,4 +1,4 @@
-FROM php:8.5.11-cli-alpine as backend-base
+FROM php:8.5.12-cli-alpine as backend-base
 RUN mkdir /app
 WORKDIR /app
 
