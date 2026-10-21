@@ -2,8 +2,10 @@
 mago = "1.56.3"
 bun = "1.4.3"
 biome = "2.5.15"
-"http:php" = { version = "8.5.8", url = 'https://dl.static-php.dev/static-php-cli/bulk/php-{{ version }}-cli-{{ os() }}-{{ arch(x64="x86_64",arm64="aarch64") }}.tar.gz' }
-"github:composer/composer" = { version = "2.10.3", rename_exe="composer"}
+# "http:php" = { version = "8.5.8", url = 'https://dl.static-php.dev/static-php-cli/bulk/php-{{ version }}-cli-{{ os() }}-{{ arch(x64="x86_64",arm64="aarch64") }}.tar.gz' }
+# "github:composer/composer" = { version = "2.10.3", rename_exe="composer"}
+# To deal with CVE-2026-109618 and CVE-2026-109619, revert to self-build php
+"php" = "8.5.12"
 
 [tasks.install-deps-backend]
 run = "composer install"
