@@ -54,3 +54,4 @@ CMD [ "bun", "test" ]
 
 FROM backend AS production
 COPY --from=frontend /app/dist/* /app/public/
+RUN echo "expose_php = off" > /usr/local/etc/php/conf.d/remove_php_header.ini
