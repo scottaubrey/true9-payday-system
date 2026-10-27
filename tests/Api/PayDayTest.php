@@ -46,7 +46,7 @@ describe('PayDayApi', function () {
         expect($response->getHeaderLine('Content-Type'))->toBe('application/json');
     });
 
-    it('returns an error when given a year earlier than 1000 (public holiday library bug)', fails(function () {
+    it('returns an error when given a year earlier than 1000 (public holiday library bug)', function () {
         makePayDayRequestAndExpectError('6', '10', 400, '400 Bad Request');
-    }));
+    });
 });

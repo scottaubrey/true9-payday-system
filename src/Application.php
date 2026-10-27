@@ -45,7 +45,6 @@ class Application
                     $response->getBody()->write('{"message":"Query params require strings"}');
                     return $response->withStatus(StatusCodeInterface::STATUS_BAD_REQUEST);
                 }
-
                 $payDateCalculator = new PayDateCalculator();
                 $payDate = $payDateCalculator->calculateFor($year, $month);
                 $paymentDate = $payDateCalculator->calculatePaymentDateFor($payDate);

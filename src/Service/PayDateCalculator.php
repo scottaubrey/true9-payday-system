@@ -9,6 +9,7 @@ use DateTimeImmutable;
 use DomainException;
 use Scottaubrey\True9PaydaySystem\Model\PayDate;
 use Scottaubrey\True9PaydaySystem\Model\PaymentDate;
+use Yasumi\Exception\InvalidYearException;
 use Yasumi\ProviderInterface;
 use Yasumi\Yasumi;
 
@@ -35,7 +36,11 @@ class PayDateCalculator
 
     private function getPublicHolidayCalculatorFor(int $year): ProviderInterface
     {
-        return Yasumi::create('UnitedKingdom\England', locale: 'en_GB', year: $year);
+        try {
+            return Yasumi::create('UnitedKingdom\England', locale: 'en_GB', year: $year);
+        } catch (InvalidYearException $e) {
+            throw new DomainException("Year ({$year}) is not valid.", 0, $e);
+        }
     }
 
     public function calculatePaymentDateFor(PayDate $payDate): PaymentDate
